@@ -1,0 +1,137 @@
+:root {
+  color-scheme: light;
+
+  /* Primitive colors: use semantic variables in components. */
+  --x-color-ink-950: #111613;
+  --x-color-ink-900: #18201c;
+  --x-color-black: #050505;
+  --x-color-charcoal: #171717;
+  --x-color-gray-700: #4c4c49;
+  --x-color-gray-500: #858580;
+  --x-color-gray-300: #c9c9c2;
+  --x-color-gray-200: #deded8;
+  --x-color-gray-100: #f0f0eb;
+  --x-color-green-900: #173c2d;
+  --x-color-green-800: #1f513d;
+  --x-color-green-700: #2b6a50;
+  --x-color-green-600: #3a7d60;
+  --x-color-green-200: #b9d0c2;
+  --x-color-green-100: #dce8e0;
+  --x-color-gold-700: #8a632c;
+  --x-color-gold-600: #a97935;
+  --x-color-gold-500: #c49a54;
+  --x-color-gold-300: #dec79b;
+  --x-color-ivory-50: #f7f5ef;
+  --x-color-ivory-100: #efebe1;
+  --x-color-ivory-200: #e1dbce;
+  --x-color-white: #ffffff;
+  --x-color-neutral-500: #7a817d;
+  --x-color-neutral-600: #626a65;
+  --x-color-inverse-muted: #b9c0bb;
+  --x-color-error: #b42318;
+  --x-color-error-soft: #f2d2d0;
+  --x-color-success: #2f6b4f;
+  --x-color-warning: #8a5a14;
+  --x-color-info: #315f78;
+
+  /* Semantic colors. */
+  --x-surface-page: var(--x-color-white);
+  --x-surface-subtle: var(--x-color-gray-100);
+  --x-surface-raised: var(--x-color-white);
+  --x-surface-brand: var(--x-color-green-900);
+  --x-surface-dark: var(--x-color-black);
+  --x-text-primary: var(--x-color-black);
+  --x-text-secondary: var(--x-color-gray-700);
+  --x-text-brand: var(--x-color-green-900);
+  --x-text-inverse: var(--x-color-white);
+  --x-text-inverse-muted: var(--x-color-inverse-muted);
+  --x-border-subtle: var(--x-color-gray-200);
+  --x-border-default: var(--x-color-gray-300);
+  --x-border-strong: var(--x-color-black);
+  --x-focus-ring: var(--x-color-green-600);
+  --x-path-track: var(--x-color-green-200);
+  --x-path-active: var(--x-color-gold-500);
+
+  /* Typography. */
+  --x-font-sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --x-font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --x-font-display: "Arial Black", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --x-font-mono: "SFMono-Regular", "SF Mono", "Roboto Mono", "Courier New", monospace;
+  --x-font-size-xs: 0.75rem;
+  --x-font-size-sm: 0.875rem;
+  --x-font-size-base: 1rem;
+  --x-font-size-lg: 1.125rem;
+  --x-font-size-xl: 1.5rem;
+  --x-font-size-2xl: 2rem;
+  --x-font-size-3xl: 3rem;
+  --x-font-size-4xl: 4.5rem;
+  --x-font-size-display: 12rem;
+
+  /* Spacing and shape. */
+  --x-space-1: 0.25rem;
+  --x-space-2: 0.5rem;
+  --x-space-3: 0.75rem;
+  --x-space-4: 1rem;
+  --x-space-4-compact: 1.25rem;
+  --x-space-5: 1.5rem;
+  --x-space-6: 2rem;
+  --x-space-6-compact: 2.5rem;
+  --x-space-7: 3rem;
+  --x-space-8: 4rem;
+  --x-space-9: 5rem;
+  --x-space-10: 6rem;
+  --x-space-section-md: 7rem;
+  --x-space-11: 8rem;
+  --x-space-section-xl: 10rem;
+  --x-radius-sm: 0.375rem;
+  --x-radius-md: 0.75rem;
+  --x-radius-lg: 1.25rem;
+  --x-radius-xl: 1.5rem;
+  --x-radius-frame: 1.75rem;
+  --x-radius-pill: 999px;
+
+  /* Motion. */
+  --x-duration-instant: 80ms;
+  --x-duration-fast: 140ms;
+  --x-duration-base: 200ms;
+  --x-duration-moderate: 280ms;
+  --x-duration-slow: 420ms;
+  --x-duration-emphasis: 560ms;
+  --x-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --x-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --x-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --x-ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout and components. */
+  --x-content-max: 120rem;
+  --x-reading-max: 45rem;
+  --x-page-gutter: 1rem;
+  --x-section-gap: 5rem;
+  --x-header-height: 4rem;
+  --x-control-min-hit: 2.75rem;
+  --x-control-height: 3rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --x-page-gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --x-page-gutter: 1.75rem;
+    --x-section-gap: 8rem;
+    --x-header-height: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --x-duration-fast: 0.01ms;
+    --x-duration-base: 0.01ms;
+    --x-duration-moderate: 0.01ms;
+    --x-duration-slow: 0.01ms;
+    --x-duration-emphasis: 0.01ms;
+  }
+}

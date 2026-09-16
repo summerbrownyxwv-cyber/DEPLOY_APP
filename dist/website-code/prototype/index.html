@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="description" content="寻艾官网可交互低保真原型" />
+    <title>寻艾官网｜动态低保真原型</title>
+    <link rel="stylesheet" href="../../design-system/xunai/tokens/tokens.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./brand-refinement.css" />
+    <link rel="stylesheet" href="./brand-page.css" />
+    <link rel="stylesheet" href="./motion-refinement.css" />
+    <link rel="stylesheet" href="./home-editorial.css" />
+    <link rel="stylesheet" href="./stores-page.css" />
+    <link rel="stylesheet" href="./brand-figma.css" />
+    <link rel="stylesheet" href="./ai-page.css" />
+    <link rel="stylesheet" href="./about-page.css" />
+    <link rel="stylesheet" href="./franchise-page.css" />
+    <script src="./franchise-page.js" defer></script>
+    <script src="./about-page.js" defer></script>
+    <script src="./ai-orbit.js" defer></script>
+    <script src="./ai-page.js" defer></script>
+    <script src="./stores-page.js" defer></script>
+    <script src="./motion-refinement.js" defer></script>
+    <script src="./brand-figma.js" defer></script>
+    <script src="./brand-page.js" defer></script>
+    <script src="./brand-refinement.js" defer></script>
+    <link rel="stylesheet" href="./review-comments.css" />
+    <script src="./review-comments.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body class="is-loading">
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <link rel="stylesheet" href="./site-consistency.css" />
+    <div class="intro-loader" aria-hidden="true">
+      <span>寻艾 / XUNAI</span>
+      <i></i>
+      <span>LOADING</span>
+    </div>
+    <div class="route-curtain" aria-hidden="true"><i></i><span data-curtain-label>PAGE / 01</span></div>
+
+    <header class="site-header" data-header>
+      <div class="header-brand-group">
+        <a class="brand-mark route-link" href="#/" aria-label="寻艾首页">
+          <span class="brand-word-crop"><img class="brand-logo" src="../../assets/02-brand-detail/02-brand-logo-01.webp" width="1740" height="472" alt="寻艾" /></span>
+        </a>
+      </div>
+
+      <nav class="desktop-nav" aria-label="主导航">
+        <span class="nav-stack">
+          <a class="route-link" href="#/brand/about">品牌实力</a>
+          <a class="route-link" href="#/stores/standard">寻艾艾灸馆</a>
+        </span>
+        <span class="nav-stack">
+          <a class="route-link" href="#/ai">寻艾 AI</a>
+          <a class="route-link" href="#/franchise">加盟合作</a>
+        </span>
+        <a class="route-link nav-single" href="#/about/culture">关于我们</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <div class="page-scrim" hidden></div>
+
+    <aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" aria-label="移动导航">
+      <div class="drawer-head">
+        <span>MENU / 全站导航</span>
+        <button class="icon-button drawer-close" type="button" aria-label="关闭菜单">×</button>
+      </div>
+      <nav class="drawer-nav" aria-label="移动端主导航">
+        <a class="route-link" href="#/"><span>01</span>首页</a>
+        <a class="route-link" href="#/brand/about"><span>02</span>品牌实力</a>
+        <a class="route-link" href="#/stores/standard"><span>03</span>寻艾艾灸馆</a>
+        <a class="route-link" href="#/ai"><span>04</span>寻艾 AI</a>
+        <a class="route-link" href="#/franchise"><span>05</span>加盟合作</a>
+        <a class="route-link" href="#/about/culture"><span>06</span>关于我们</a>
+      </nav>
+      <div class="drawer-actions">
+        <button class="pill-button service-open" type="button" data-service="consumer">消费者服务</button>
+        <button class="pill-button service-open" type="button" data-service="verify">投诉通道</button>
+      </div>
+    </aside>
+
+    <main id="main-content" tabindex="-1"></main>
+
+    <button class="service-rail service-open" type="button" data-service="consumer" aria-label="打开消费者服务">
+      <b>寻艾</b><span>官方服务</span>
+    </button>
+
+    <section class="xf-cta"><img src="../../assets/figma-brand-v2/imgFrame72.png" alt="寻艾空间" width="1440" height="960" loading="lazy"><div><h2>了解寻艾，<br>从一次交流开始。</h2><p>加盟条件、总部支持与合作意向，统一进入加盟合作。</p><a class="pill-button route-link" href="#/franchise/apply">提交合作意向</a></div></section>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand-mark route-link" href="#/" aria-label="寻艾首页"><img class="brand-logo" src="../../assets/brand/xunai-horizontal.png" width="660" height="164" alt="寻艾艾灸馆" loading="lazy" /></a>
+        <div class="footer-utilities"><span aria-label="中文，英文版本待启用">中文 / EN</span><button class="mono-link service-open" type="button" data-service="verify">官方验证/投诉</button></div>
+      </div>
+      <div class="footer-columns">
+        <section><h2>联系方式</h2><p>电话：【待补充】</p><p>邮箱：【待补充】</p><p>官方联系邮箱：【待补充】</p><p>地址：【待补充】</p></section>
+        <nav aria-label="页脚快捷导航"><h2>快捷导航</h2>
+          <a class="route-link" href="#/brand/about">品牌实力</a>
+          <a class="route-link" href="#/stores/standard">寻艾艾灸馆</a>
+          <a class="route-link" href="#/ai">寻艾 AI</a>
+          <a class="route-link" href="#/franchise">加盟合作</a>
+        </nav>
+        <nav aria-label="页脚加入我们"><h2>加入我们</h2><a class="route-link" href="#/about/careers">人才招聘</a><a class="route-link" href="#/about/business">商务合作</a><a class="route-link" href="#/about/overseas">海外合作</a></nav>
+      </div>
+      <div class="footer-bottom"><small>[备案信息待提供]</small></div>
+    </footer>
+
+    <dialog class="service-dialog" aria-labelledby="service-title">
+      <form method="dialog" class="dialog-shell">
+        <div class="dialog-head">
+          <p>OFFICIAL / SERVICE</p>
+          <button class="icon-button" value="close" aria-label="关闭服务窗口">×</button>
+        </div>
+        <h2 id="service-title">消费者服务</h2>
+        <p id="service-description">[服务说明与官方联系方式待提供]</p>
+        <div class="dialog-placeholder" aria-hidden="true">QR / PHONE / FORM<br />[官方入口占位]</div>
+        <button class="pill-button service-open" id="service-complaint" type="button" data-service="verify">投诉通道</button>
+        <button class="pill-button" value="close">完成查看</button>
+      </form>
+    </dialog>
+
+    <div class="live-region" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
