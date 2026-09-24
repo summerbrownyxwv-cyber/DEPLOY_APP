@@ -23,7 +23,7 @@ const root=path.resolve(__dirname,'..');
   const variants=[];
   for(const width of widths){
    const output=folder+'-'+name+'-'+width+'.webp';
-   const info=await sharp(file).resize({width,withoutEnlargement:true}).webp({quality:94,effort:6,lossless:/logo|horizontal|frame|ai-blue|03-01/i.test(name)}).toFile(path.join(dest,output));
+   const info=await sharp(file).resize({width,withoutEnlargement:true}).webp({quality:94,effort:6,lossless:/logo|horizontal|ai-blue|03-01/i.test(name)}).toFile(path.join(dest,output));
    variants.push(['../../assets/responsive/'+output,info.width]);totalBytes+=info.size;
    if(width===widths.at(-1))largestBytes+=info.size;
   }

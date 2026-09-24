@@ -1,7 +1,7 @@
 /* Figma 482:15. Shared navigation, fonts and footer remain unchanged. */
 window.XunAiAI=(()=>{
  const base='../../assets/figma-ai-v1/';
- const image=(file,alt,extra='')=>`<img src="${base}${file}.png" alt="${alt}" width="900" height="900" ${extra||'loading="lazy"'}>`;
+ const image=(file,alt,extra='')=>`<img src="${base}${file}.webp" alt="${alt}" width="900" height="900" ${extra||'loading="lazy"'}>`;
  const matrix=[
   ['准确率超','92%','中医四诊与细分证型分析参考'],
   ['细分体质','36种','从9型体质扩展到36种细分体质，匹配调理参考方案'],

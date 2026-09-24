@@ -4,16 +4,16 @@ window.XunAiStores=(()=>{
  const wide=matchMedia('(min-width:1920px)'),ultra=matchMedia('(min-width:2560px)');
  wide.addEventListener('change',()=>resizeServices());ultra.addEventListener('change',()=>resizeServices());
  const base='../../assets/figma-stores-v1/';
- const image=(file,alt,extra='')=>`<img src="${base}${file}.png" alt="${alt}" width="1440" height="960" ${extra||'loading="lazy"'}>`;
+ const image=(file,alt,extra='')=>`<img src="${base}${file}.webp" alt="${alt}" width="1440" height="960" ${extra||'loading="lazy"'}>`;
  const arrow=()=>`<img src="${base}imgArrowNarrowUpRight.svg" width="20" height="20" alt="">`;
  const pending=label=>`<p class="xs-pending">${label}：【待补充】</p>`;
- const media=(file,alt)=>window.XunAiDesign.responsiveMarkup(`<img src="../../assets/figma-stores-v2/${file}.png" alt="${alt}" loading="lazy" width="900" height="1200">`);
+ const media=(file,alt)=>window.XunAiDesign.responsiveMarkup(`<img src="../../assets/figma-stores-v2/${file}.webp" alt="${alt}" loading="lazy" width="900" height="1200">`);
  const strengths=[['自研项目','独创五行配方<br>双效灸膏+黄金艾绒','comp-imgRectangle2'],['科技赋能','AI中医检测系统','comp-imgImg62611'],['独家研发','融合蕲春艾灸古法技艺','comp-imgRectangle3'],['艾灸空间','以现代人的审美需求建立','comp-imgRectangle5']];
  const strengthCard=(i,large=false)=>`<button type="button" class="xs-strength ${large?'is-large':''}" data-strength="${i}" aria-label="${large?'当前展示':'放大查看'}${strengths[i][0]}"><span class="xs-strength-photo">${media(strengths[i][2],strengths[i][0])}</span><span class="xs-strength-caption"><strong>${strengths[i][0]}</strong><span>${strengths[i][1]}</span></span></button>`;
  const competence=()=>`<section class="xs-section xs-competence">${heading('寻艾竞争力','四大核心领先 × 一站式解决方案<br>打造可持续的新中式艾草养生生活方式')}<div class="xs-strength-layout"><div class="xs-strength-thumbs">${[0,1,2].map(i=>strengthCard(i)).join('')}</div><div class="xs-strength-feature" aria-live="polite">${strengthCard(3,true)}<p>打破传统的空间体验，对艾灸文化进行重新演绎。在都市语境中重构传统艾灸的疗愈智慧，以现代人的审美需求建立有温度的艾灸空间。</p></div></div></section>`;
  const booklet=standard=>{
   const type=standard?'标准店':'黑金店',prefix=standard?'standard':'black-gold';
-  const photo=(file,label)=>`<img src="../../assets/figma-booklets-v3/${['tea-upright','standard-sign','ai-blue','ai-room-rotated'].includes(file)?file+'.webp':(label.startsWith('AI中医师')?'black-gold':prefix)+'-img'+file+'.png'}" alt="${type}${label}" loading="${file==='Rectangle1'?'eager':'lazy'}" width="900" height="1200">`;
+  const photo=(file,label)=>`<img src="../../assets/figma-booklets-v3/${['tea-upright','standard-sign','ai-blue','ai-room-rotated'].includes(file)?file+'.webp':(label.startsWith('AI中医师')?'black-gold':prefix)+'-img'+file+'.webp'}" alt="${type}${label}" loading="${file==='Rectangle1'?'eager':'lazy'}" width="900" height="1200">`;
   const productLink=(content,label)=>`<a class="xs-product-link" href="https://www.aiaitie.com/" target="_blank" rel="noopener noreferrer" aria-label="${label}（前往艾艾贴官网，新窗口打开）">${content}</a>`;
   const stories=standard?[['标准化建店','Rectangle8','standard-sign','Rectangle5'],['AI中医师','I9A42','ai-blue','ai-room-rotated']]:[['茶室','tea-upright','Rectangle11','tea-upright'],['AI中医师','I9A42','ai-blue','ai-room-rotated']];
   return `<header class="xs-booklet-heading"><h1>寻艾艾灸馆 · ${type}</h1><a class="route-link" href="#/stores/${prefix}">返回店型概览</a></header>
@@ -161,7 +161,7 @@ window.XunAiStores=(()=>{
   render(page){
    if(page.endsWith('/detail'))return `<div class="xs-page"><section class="xs-section xs-booklet">${booklet(page==='/stores/standard/detail')}</section></div>`;
    if(page==='/stores/services')return `<div class="xs-page xs-services">${nav(page)}${serviceSection(true)}</div>`;
-   return `<div class="xs-page"><section class="xs-hero"><div class="xs-hero-media"><video class="opening-film" muted playsinline loop autoplay preload="metadata" poster="../../assets/figma-stores-v1/imgE4A99442.png" aria-label="寻艾黑金店空间影像"><source src="../../assets/03-Xun Ai Moxibustion Clinic-detail/黑金店体验流程.mp4" type="video/mp4"></video></div><div class="xs-hero-content"><p>了解标准店、黑金店与服务卡项。</p><h1>寻艾艾灸馆</h1>${nav(page)}<div class="xs-hero-intro"><span>体验·轻养·服务</span><p>寻艾是以线下艾灸馆为基础业态的终端品牌。依托集团强大的供应链，将蕲春道地艾草与艾艾贴产品带进终端门店，结合自研体质检测AI与蕲春非遗灸法，革新传统艾灸服务，让顾客的艾灸体验焕然一新。</p></div></div></section>${competence()}${locations()}${comparison()}${serviceSection()}</div>`;
+   return `<div class="xs-page"><section class="xs-hero"><div class="xs-hero-media"><video class="opening-film" muted playsinline loop autoplay preload="metadata" poster="../../assets/figma-stores-v1/imgE4A99442.webp" aria-label="寻艾黑金店空间影像"><source src="../../assets/03-Xun Ai Moxibustion Clinic-detail/黑金店体验流程.mp4" type="video/mp4"></video></div><div class="xs-hero-content"><p>了解标准店、黑金店与服务卡项。</p><h1>寻艾艾灸馆</h1>${nav(page)}<div class="xs-hero-intro"><span>体验·轻养·服务</span><p>寻艾是以线下艾灸馆为基础业态的终端品牌。依托集团强大的供应链，将蕲春道地艾草与艾艾贴产品带进终端门店，结合自研体质检测AI与蕲春非遗灸法，革新传统艾灸服务，让顾客的艾灸体验焕然一新。</p></div></div></section>${competence()}${locations()}${comparison()}${serviceSection()}</div>`;
   },
   mount(main){
    window.XunAiReview.mount(main);

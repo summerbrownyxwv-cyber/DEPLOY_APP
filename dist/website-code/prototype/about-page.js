@@ -1,7 +1,7 @@
 /* Figma 485:385. Replace news placeholders here when approved content arrives. */
 window.XunAiAbout=(()=>{
  const base='../../assets/figma-about-v1/';
- const img=(name,alt,priority=false)=>`<img src="${base}${name}.png" alt="${alt}" width="1440" height="960" ${priority?'fetchpriority="high"':'loading="lazy"'}>`;
+ const img=(name,alt,priority=false)=>`<img src="${base}${name}.webp" alt="${alt}" width="1440" height="960" ${priority?'fetchpriority="high"':'loading="lazy"'}>`;
  const paths=['careers','business','overseas'];
  const titles=['人才招聘','商务合作','海外合作'];
  const photos=['imgRectangle66','imgRectangle67','imgRectangle72'];

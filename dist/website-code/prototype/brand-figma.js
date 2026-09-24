@@ -1,7 +1,7 @@
 /* Brand overview reconstructed from Figma 216:286. Shared shell stays outside. */
 (() => {
   const base='../../assets/figma-brand-v2/';
-  const image=(name,alt,extra='')=>`<img src="${base}${name}.png" alt="${alt}" width="1440" height="960" ${extra||'loading="lazy"'}>`;
+  const image=(name,alt,extra='')=>`<img src="${base}${name}.webp" alt="${alt}" width="1440" height="960" ${extra||'loading="lazy"'}>`;
   const icon=name=>name==='imgPlus'?`<svg class="xf-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14"/><path class="xf-plus-vertical" d="M12 5v14"/></svg>`:`<img class="xf-icon" src="${base}${name}.svg" width="24" height="24" alt="">`;
   const stages=[
     ['上游','掌握原材品质','imgDsc13822','imgDji04701','我们的品质','道地','大别山南麓<br>北纬30度的自然馈赠','《本草纲目》记载:「自成化以来，则以蕲州者胜，用充方物，天下重之，谓之蕲艾。」蕲艾之所以为艾草之王，得益于得天独厚的气候条件。北纬30度穿过大别山南麓，留下了骄阳沃土，为艾草的生长提供了最佳环境。寻艾坚持选用道地蕲艾，并恪守天时，于每年端午前后采收第一茬。此时艾草内挥发油、总黄酮和鞣酸含量更为充沛，方得以将这份自然馈赠，转化为每一缕艾灸中的温暖体验。'],
