@@ -250,7 +250,6 @@ const liveRegion = document.querySelector(".live-region");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let lastFocused = null;
 let heroTimer = null;
-let revealObserver = null;
 let heroObserver = null;
 let initialRender = true;
 let serviceLastFocused = null;
@@ -286,6 +285,7 @@ function setActiveNav(page) {
 }
 
 let renderedPage = null;
+let motionMountFrame = 0;
 function renderRoute() {
   clearInterval(heroTimer);
   const { page, anchor } = parseRoute();
@@ -294,6 +294,8 @@ function renderRoute() {
     else window.scrollTo({ top: 0, behavior: "auto" });
     return;
   }
+  cancelAnimationFrame(motionMountFrame);
+  window.XunAiMotion?.unmount();
   renderedPage = page;
   const routeTitles = {
     "/": "首页",
@@ -317,33 +319,34 @@ function renderRoute() {
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", page === "/" ? "#050505" : "#ffffff");
   document.body.classList.toggle("home-route", page === "/");
   document.body.classList.toggle("figma-brand-route", page === "/brand/about");
-  if (page === "/") main.innerHTML = window.XunAiDesign.home();
-  else if (["/brand/about", "/brand/history", "/brand/products"].includes(page)) main.innerHTML = window.XunAiBrand.render(page);
-  else if (["/stores/standard", "/stores/black-gold", "/stores/services", "/stores/standard/detail", "/stores/black-gold/detail"].includes(page)) main.innerHTML = window.XunAiStores.render(page);
-  else if (page === "/ai") main.innerHTML = aiTemplate();
-  else if (["/about/culture","/about/news","/about/join","/about/careers","/about/business","/about/overseas"].includes(page)) main.innerHTML = window.XunAiAbout.render(page);
+  if (page === "/") main.innerHTML = window.XunAiDesign.responsiveMarkup(window.XunAiDesign.home());
+  else if (["/brand/about", "/brand/history", "/brand/products"].includes(page)) main.innerHTML = window.XunAiDesign.responsiveMarkup(window.XunAiBrand.render(page));
+  else if (["/stores/standard", "/stores/black-gold", "/stores/services", "/stores/standard/detail", "/stores/black-gold/detail"].includes(page)) main.innerHTML = window.XunAiDesign.responsiveMarkup(window.XunAiStores.render(page));
+  else if (page === "/ai") main.innerHTML = window.XunAiDesign.responsiveMarkup(aiTemplate());
+  else if (["/about/culture","/about/news","/about/join","/about/careers","/about/business","/about/overseas"].includes(page)) main.innerHTML = window.XunAiDesign.responsiveMarkup(window.XunAiAbout.render(page));
   else if (page === "/franchise" || page === "/franchise/apply") {
-    main.innerHTML = franchiseTemplate(page === "/franchise/apply");
+    main.innerHTML = window.XunAiDesign.responsiveMarkup(franchiseTemplate(page === "/franchise/apply"));
     if (page === "/franchise/apply") mountForm(1);
   } else {
     const fallback = { coordinate: "404 / PROTOTYPE", title: "页面尚未定义", aside: "请从主导航返回已配置页面。", sections: [["返回路径", "[该原型路由未配置]"]] };
-    main.innerHTML = standardPageTemplate(pageData[page] || fallback);
+    main.innerHTML = window.XunAiDesign.responsiveMarkup(standardPageTemplate(pageData[page] || fallback));
   }
   window.XunAiDesign.enhance(main, page);
   main.querySelectorAll('.xh-partner,.xb-partner-next,.xs-cta,.texture-cta').forEach(section=>section.remove());
   setActiveNav(page);
   window.XunAiBrand.mount(main);
   window.XunAiStores.mount(main);
-  window.XunAiMotion?.mount(main);
   window.XunAiAI.mount(main);
   window.XunAiAbout.mount(main,page);
   window.XunAiFranchise.mount(main);
   setupPageInteractions();
-  if (anchor) {
-    requestAnimationFrame(() => document.getElementById(anchor)?.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth" }));
-  } else {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }
+  const target = anchor || ({'/about/news':'news','/about/join':'join'})[page];
+  if (target) document.getElementById(target)?.scrollIntoView({behavior:'instant'});
+  else window.scrollTo({top:0,behavior:'instant'});
+  motionMountFrame=requestAnimationFrame(()=>{
+    window.XunAiMotion?.mount(main);
+    if(!reduceMotion.matches) main.animate([{opacity:.65},{opacity:1}],{duration:250,easing:'ease-out'});
+  });
 }
 
 function renderWithTransition() {
@@ -380,23 +383,8 @@ function setupHero() {
 }
 
 function setupReveal() {
+  // The shared motion mount owns viewport entrances.
   document.querySelectorAll('.reveal').forEach(item => item.classList.add('is-visible'));
-  return;
-  revealObserver?.disconnect();
-  const items = document.querySelectorAll(".reveal");
-  if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-    items.forEach((item) => item.classList.add("is-visible"));
-    return;
-  }
-  revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  items.forEach((item) => revealObserver.observe(item));
 }
 
 function setupHeaderTone() {
@@ -511,7 +499,7 @@ function openDrawer() {
   menuToggle.setAttribute("aria-expanded", "true");
   scrim.hidden = false;
   document.body.classList.add("is-locked");
-  document.querySelectorAll('main,.site-header,.site-footer,.service-rail').forEach(el => el.inert = true);
+  document.querySelectorAll('main,.site-header,.site-footer,.service-rail,body>.xf-cta').forEach(el => el.inert = true);
   drawer.querySelector(".drawer-close")?.focus();
 }
 
@@ -521,7 +509,7 @@ function closeDrawer() {
   menuToggle.setAttribute("aria-expanded", "false");
   scrim.hidden = true;
   document.body.classList.remove("is-locked");
-  document.querySelectorAll('main,.site-header,.site-footer,.service-rail').forEach(el => el.inert = false);
+  document.querySelectorAll('main,.site-header,.site-footer,.service-rail,body>.xf-cta').forEach(el => el.inert = false);
   lastFocused?.focus();
 }
 
@@ -577,6 +565,36 @@ window.addEventListener("beforeunload", (event) => {
 });
 
 window.addEventListener("hashchange", renderWithTransition);
+
+// Collapse the shared footer on phones and tablets; restore desktop columns above the breakpoint.
+const footerPhone = matchMedia('(max-width:1199.98px)');
+const footerGroups = [...document.querySelectorAll('.footer-columns > section,.footer-columns > nav')].map((group,index) => {
+  const heading = group.querySelector('h2');
+  return { heading, nodes:[...heading.childNodes], items:[...group.children].filter(el => el !== heading), index };
+});
+function syncPhoneFooter() {
+  footerGroups.forEach(({heading,nodes,items,index}) => {
+    if (!footerPhone.matches) {
+      heading.replaceChildren(...nodes);
+      items.forEach(item => { item.hidden = false; item.removeAttribute('id'); });
+      return;
+    }
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'footer-mobile-toggle';
+    button.textContent = nodes.map(node => node.textContent).join('');
+    button.setAttribute('aria-expanded','false');
+    items.forEach((item,i) => { item.id = `footer-mobile-${index}-${i}`; item.hidden = true; });
+    button.setAttribute('aria-controls',items.map(item => item.id).join(' '));
+    button.addEventListener('click',() => {
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded',String(open));
+      items.forEach(item => item.hidden = !open);
+    });
+    heading.replaceChildren(button);
+  });
+}
+footerPhone.addEventListener('change',syncPhoneFooter);
+if (footerPhone.matches) syncPhoneFooter();
 
 renderWithTransition();
 window.setTimeout(() => document.body.classList.remove("is-loading"), reduceMotion.matches ? 0 : 760);

@@ -65,7 +65,31 @@
   --x-font-size-2xl: 2rem;
   --x-font-size-3xl: 3rem;
   --x-font-size-4xl: 4.5rem;
-  --x-font-size-display: 12rem;
+  --x-font-size-display: var(--x-type-display);
+
+  /* Shared semantic scale; keep the established Chinese font roles. */
+  --x-type-display: clamp(2.5rem, 1.3rem + 4.5vw, 5.5rem);
+  --x-type-h1: clamp(2rem, 1.5rem + 1.95vw, 3.25rem);
+  --x-type-h2: clamp(1.625rem, 1.25rem + 1.2vw, 2.25rem);
+  --x-type-h3: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --x-type-body-large: clamp(1rem, .95rem + .2vw, 1.125rem);
+  --x-type-body: clamp(.9375rem, .9rem + .15vw, 1rem);
+  --x-type-caption: clamp(.75rem, .7rem + .2vw, .875rem);
+  --x-type-label: var(--x-type-caption);
+  --x-type-nav: clamp(.9375rem, .9rem + .15vw, 1rem);
+  --x-type-button: clamp(.875rem, .8rem + .3vw, 1rem);
+  --x-leading-heading: 1.4;
+  --x-leading-display: 1.3;
+  --x-leading-body: 1.75;
+  --x-leading-label: 1.5;
+  --x-tracking-heading: 0;
+  --x-tracking-body: 0;
+  --x-tracking-label: .02em;
+  --x-heading-xl: var(--x-type-h1);
+  --x-heading-lg: var(--x-type-h2);
+  --x-heading-md: var(--x-type-h3);
+  --x-body-size: var(--x-type-body);
+  --x-meta-size: var(--x-type-caption);
 
   /* Spacing and shape. */
   --x-space-1: 0.25rem;
@@ -91,43 +115,71 @@
   --x-radius-pill: 999px;
 
   /* Motion. */
-  --x-duration-instant: 80ms;
-  --x-duration-fast: 140ms;
-  --x-duration-base: 200ms;
-  --x-duration-moderate: 280ms;
-  --x-duration-slow: 420ms;
-  --x-duration-emphasis: 560ms;
+  --x-motion-fast: 220ms;
+  --x-motion-normal: 400ms;
+  --x-motion-slow: 950ms;
+  --x-motion-visual: 1200ms;
+  --x-motion-route: 250ms;
+  --x-motion-counter: 2200ms;
+  --x-motion-counter-delay: 200ms;
+  --x-motion-stagger: 100ms;
+  --x-motion-ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --x-motion-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --x-duration-instant: var(--x-motion-fast);
+  --x-duration-fast: var(--x-motion-fast);
+  --x-duration-base: var(--x-motion-normal);
+  --x-duration-moderate: var(--x-motion-normal);
+  --x-duration-slow: var(--x-motion-slow);
+  --x-duration-emphasis: var(--x-motion-visual);
   --x-ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --x-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
   --x-ease-exit: cubic-bezier(0.4, 0, 1, 1);
   --x-ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Layout and components. */
-  --x-content-max: 120rem;
+  --x-container-max: 90rem;
+  --x-container-content: 80rem;
+  --x-content-max: var(--x-container-max);
   --x-reading-max: 45rem;
-  --x-page-gutter: 1rem;
-  --x-section-gap: 5rem;
+  --x-page-gutter: clamp(1.25rem, 5.13vw, 1.5rem);
+  --x-section-gap: clamp(3.5rem, 12vw, 5rem);
+  --x-section-compact: clamp(2rem, 7vw, 3rem);
+  --x-layout-gap: clamp(1.5rem, 4vw, 4rem);
   --x-header-height: 4rem;
+  --x-ratio-hero: 21/9;
+  --x-ratio-content: 4/3;
+  --x-ratio-landscape: 3/2;
+  --x-ratio-news: 16/10;
+  --x-ratio-portrait: 3/4;
   --x-control-min-hit: 2.75rem;
   --x-control-height: 3rem;
 }
 
 @media (min-width: 48rem) {
   :root {
-    --x-page-gutter: 1.5rem;
+    --x-page-gutter: clamp(2rem, 4.17vw, 3rem);
+    --x-section-gap: clamp(5rem, 10.42vw, 7rem);
+    --x-section-compact: 3rem;
+    --x-header-height: 4.5rem;
   }
 }
 
-@media (min-width: 64rem) {
+/* Four tiers: <768, 768–1024, 1025–1439, >=1440 CSS pixels. */
+@media (min-width: 64.0625rem) {
   :root {
-    --x-page-gutter: 1.75rem;
-    --x-section-gap: 8rem;
-    --x-header-height: 5rem;
+    --x-page-gutter: clamp(4rem, 4.17vw, 5rem);
+    --x-section-gap: clamp(7.5rem, 8.34vw, 10rem);
+    --x-section-compact: 4rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
+    --x-motion-fast: 0.01ms;
+    --x-motion-normal: 0.01ms;
+    --x-motion-slow: 0.01ms;
+    --x-motion-visual: 0.01ms;
+    --x-motion-route: 0.01ms;
     --x-duration-fast: 0.01ms;
     --x-duration-base: 0.01ms;
     --x-duration-moderate: 0.01ms;

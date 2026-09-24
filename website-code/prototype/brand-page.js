@@ -40,8 +40,7 @@
       ['蕲艾最具影响力品牌','艾艾贴 · 蕲春县蕲艾产业协会','2016年12月','02-04']
     ]],
     ['社会责任',[
-      ['深圳市慈善会·元梦公益基金','详情：【待补充】','2017年4月',null],
-      ['深圳手信','艾艾贴（向阳而生灸贴礼盒）· 深圳前海艾艾贴生物科技有限公司；详情：【待补充】','',null],
+      ['深圳市慈善会·元梦公益基金','深圳市慈善会 · 2017年4月','2017年4月','03-01'],
       ['2023年全国首届乡村振兴高峰论坛暨成果展 乡村振兴创新引领典型推介','湖北艾艾贴健康科技有限公司 · 中国农业电影电视中心 / 丰饶中国组委会','2023.4.22','03-03'],
       ['2023年度深圳健康产业 消费者信赖品牌','深圳前海艾艾贴生物科技有限公司 · 颁发机构以证书原图为准','2024年3月','03-04'],
       ['2023年度深圳健康产业 慈善楷模','深圳前海艾艾贴生物科技有限公司 · 颁发机构以证书原图为准','2024年3月','03-05']
@@ -60,7 +59,7 @@
   ];
   const figma = '../../assets/figma-brand/';
   const media = {herb:'imgDji04701',greenhouse:'imgDsc13822','store-space':'imgE4A00331','store-reception':'imgRectangle3','store-detail':'imgE4A202'};
-  const photo = (name,alt,cls='',eager=false) => `<img class="xb-photo ${cls}" src="${figma}${media[name] || name}.png" alt="${esc(alt)}" width="1440" height="960" ${eager?'fetchpriority="high"':'loading="lazy"'}>`;
+  const photo = (name,alt,cls='',eager=false) => `<img class="xb-photo ${cls}" src="${figma}${media[name] || name}.webp" alt="${esc(alt)}" width="1440" height="960" ${eager?'fetchpriority="high"':'loading="lazy"'}>`;
   const intro = () => `<section class="xb-section xb-intro" id="introduction"><div class="xb-intro-copy"><p class="xb-label">寻艾艾灸馆</p><h2>艾灸养生，<br>连接日常。</h2><p>寻艾以艾草产业为基础，将产品、线下服务与数字化能力连接起来。从原材品质到到店体验，为长期经营建立可持续的服务体系。</p><dl class="xb-positioning"><div><dt>产业基础</dt><dd>从艾草育种到终端服务</dd></div><div><dt>服务场景</dt><dd>到店体验与居家养护</dd></div><div><dt>品牌主张</dt><dd>艾草为本，品质为基，服务致远</dd></div></dl></div><figure>${photo('store-space','寻艾黑金店的空间与陈设')}<figcaption>寻艾艾灸馆 · 黑金店空间</figcaption></figure></section>`;
   const stages = [
     ['上游','掌握原材品质','imgDsc13822','imgDji04701','我们的品质','道地，从一株艾草开始。','扎根湖北蕲春，将育种研究、道地种植与原材管理连接起来。品质的起点，是对每一株艾草的认真。'],

@@ -1,5 +1,5 @@
 /* Motion-only brand adaptation of the user reference recording, 2026-09-09. */
-:root{--xm-ease:cubic-bezier(.22,1,.36,1);--xm-duration:560ms;--xm-quick:180ms}
+:root{--xm-ease:cubic-bezier(.22,1,.36,1);--xm-duration:var(--x-motion-normal);--xm-quick:var(--x-motion-fast)}
 /* Shared control polish: preserve brand typography and page compositions. */
 :is(.pill-button,.deck-link,.film-toggle,.icon-button,.menu-toggle,.service-rail){
   -webkit-tap-highlight-color:transparent;
@@ -32,15 +32,19 @@
 .opening-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}.cinematic-opening::before{content:'';position:absolute;inset:0;background:rgb(0 0 0 / .36);z-index:-1;pointer-events:none}
 .cinematic-opening .opening-copy{text-align:center;padding:24px;max-width:1100px}.cinematic-opening .brand-slogan{color:inherit;font-size:clamp(24px,3vw,42px);line-height:1.1;margin-bottom:32px}.cinematic-opening h1{font-size:clamp(44px,6.4vw,96px);line-height:1.4;letter-spacing:.035em;text-wrap:balance}.cinematic-opening .opening-description{color:inherit}.cinematic-opening .pill-button{background:var(--x-surface-page);color:var(--x-text-primary);border-color:var(--x-surface-page)}
 .film-toggle{position:absolute;left:var(--x-page-gutter);bottom:28px;min-width:80px;min-height:44px;border:1px solid currentColor;background:rgb(0 0 0 / .4);color:var(--x-surface-page);border-radius:var(--x-radius-pill);font:inherit;font-size:var(--x-meta-size);cursor:pointer}
-.xb-switch-tabs{position:relative}.xm-tab-indicator{position:absolute;left:0;top:0;background:var(--x-brand-pale);pointer-events:none;z-index:0;border-bottom:2px solid var(--x-brand-dark-olive);transition:transform var(--xm-duration) var(--xm-ease),width var(--xm-duration) var(--xm-ease),height var(--xm-duration) var(--xm-ease)}.xb-switch-tabs button{position:relative;z-index:1}.xm-tabs-ready button[aria-selected=true]{background:transparent;border-color:transparent}
+.xb-switch-tabs{position:relative}.xm-tab-indicator{position:absolute;left:0;top:0;background:var(--x-brand-pale);pointer-events:none;z-index:0;border-bottom:2px solid var(--x-brand-dark-olive);transition:transform var(--xm-duration) var(--xm-ease)}.xb-switch-tabs button{position:relative;z-index:1}.xm-tabs-ready button[aria-selected=true]{background:transparent;border-color:transparent}
 .xb-disclosure summary::after{transition:transform var(--xm-duration) var(--xm-ease)}.xb-disclosure[open]>summary::after{content:'+';transform:rotate(45deg)}
 .xb-driver summary,.xb-disclosure summary{transition:color var(--xm-quick),background var(--xm-quick)}
 @media(hover:hover){.xb-driver summary:hover,.xb-disclosure summary:hover{background:var(--x-brand-pale);color:var(--x-brand-dark-olive)}}
 .xm-detail-body{display:flow-root}.xm-detail-body>p:last-child{margin-bottom:24px}.xm-panel-stage{overflow:clip}
 @media(max-width:767px){.brand-word-crop{width:80px;height:52px}.brand-word-crop .brand-logo{width:205px}.cinematic-opening{min-height:calc(100svh - var(--x-header-height));padding:56px 20px 88px}.cinematic-opening .opening-copy{padding:0}.cinematic-opening h1{font-size:clamp(38px,10vw,56px);letter-spacing:0}.cinematic-opening .brand-slogan{font-size:28px}.film-toggle{bottom:24px}.cinematic-opening .opening-description{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.xm-tab-indicator{transition:none!important}.cinematic-opening *{animation:none!important;transition:none!important}}
-/* Blur only the trailing edge of a section after its reading area has passed. */
-.xm-scroll-scene{transition:filter 400ms cubic-bezier(.22,1,.36,1)}
-.xm-scroll-scene.xm-scroll-past:not(:focus-within){filter:blur(2px)}
-@media(prefers-reduced-motion:reduce){.xm-scroll-scene.xm-scroll-past{filter:none!important}}
 @media(max-width:767px){.brand-word-crop{width:53.33px;height:34.67px}.brand-word-crop .brand-logo{width:136.67px}}
+
+/* Progressive enhancement: failed/disabled JS never hides page content. */
+.xm-reveal[data-motion-state="pending"],.xm-reveal[data-motion-state="running"]{opacity:0}
+.xm-reveal[data-motion-state="complete"]{opacity:1}
+.xm-counter{display:inline-grid;position:relative;font-variant-numeric:tabular-nums}
+.xm-counter-space,.xm-counter-value{grid-area:1/1}
+.xm-counter-space{visibility:hidden}
+@media(prefers-reduced-motion:reduce){.xm-reveal[data-motion-state]{opacity:1;translate:none!important}}

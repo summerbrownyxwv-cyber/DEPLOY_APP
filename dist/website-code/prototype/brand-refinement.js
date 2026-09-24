@@ -1,5 +1,22 @@
 /* Brand manual 2026-09-08. Existing routes and form behavior remain shared. */
 window.XunAiDesign = {
+  responsiveMarkup(html) {
+    const template=document.createElement('template');template.innerHTML=html;
+    template.content.querySelectorAll('img').forEach(img=>{
+      const item=window.XunAiImages?.[img.getAttribute('src')];if(!item)return;
+      img.width=item.width;img.height=item.height;
+      img.srcset=item.variants.map(([src,width])=>src+' '+width+'w').join(', ');
+      const hero=!!img.closest('[data-immersive-hero],.xj-hero,.xo-hero,.xa-hero');
+      img.sizes=hero?'100vw':'(max-width:767px) 100vw, (max-width:1024px) 70vw, 50vw';
+      img.src=item.variants.at(-1)[0];img.decoding='async';
+      if(hero){img.loading='eager';img.fetchPriority='high'}
+    });
+    template.content.querySelectorAll('video[poster]').forEach(video=>{
+      const item=window.XunAiImages?.[video.getAttribute('poster')];
+      if(item)video.poster=item.variants.at(-1)[0];
+    });
+    return template.innerHTML;
+  },
   home() {
     return `<div class="home-shell xh-home">
       <section class="xh-opening" data-immersive-hero aria-labelledby="home-title">
@@ -17,6 +34,12 @@ window.XunAiDesign = {
 
   enhance(main, page) {
     this.homeMotionCleanup?.();
+    main.querySelectorAll('table').forEach(table=>{
+      if(table.parentElement.classList.contains('xu-table-scroll'))return;
+      const region=document.createElement('div');region.className='xu-table-scroll';
+      region.tabIndex=0;region.setAttribute('role','region');region.setAttribute('aria-label','表格，可横向滚动查看完整内容');
+      table.before(region);region.append(table);
+    });
     if(page==='/'){
       const hero=main.querySelector('.xh-opening'),picture=hero.querySelector('img'),reduce=matchMedia('(prefers-reduced-motion:reduce)');
       let frame=0;

@@ -1,7 +1,7 @@
 /* Figma 482:15. Shared navigation, fonts and footer remain unchanged. */
 window.XunAiAI=(()=>{
  const base='../../assets/figma-ai-v1/';
- const image=(file,alt,extra='')=>`<img src="${base}${file}.png" alt="${alt}" width="900" height="900" ${extra||'loading="lazy"'}>`;
+ const image=(file,alt,extra='')=>`<img src="${base}${file}.webp" alt="${alt}" width="900" height="900" ${extra||'loading="lazy"'}>`;
  const matrix=[
   ['准确率超','92%','中医四诊与细分证型分析参考'],
   ['细分体质','36种','从9型体质扩展到36种细分体质，匹配调理参考方案'],
@@ -33,6 +33,7 @@ window.XunAiAI=(()=>{
   </div>`},
   mount(main){
    cleanup();const hero=main.querySelector('.xa-hero');if(!hero)return;
+   hero.querySelector('.xa-stage').prepend(hero.querySelector('.xa-star-trails'));
    const page=main.querySelector('.xa-page');
    const reduce=matchMedia('(prefers-reduced-motion: reduce)');
    const resize=()=>page.style.setProperty('--xa-wash-height',hero.offsetHeight+main.querySelector('.xa-intro').offsetHeight+'px');
@@ -63,18 +64,7 @@ window.XunAiAI=(()=>{
    report.addEventListener('pointermove',event=>{if(drag)report.scrollLeft=drag.left+drag.x-event.clientX});
    const release=()=>drag=null;report.addEventListener('pointerup',release);report.addEventListener('pointercancel',release);
    report.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();report.scrollBy({left:report.clientWidth*(event.key==='ArrowRight'?1:-1),behavior:reduce.matches?'instant':'smooth'})}});
-   const counters=[...main.querySelectorAll('[data-count]')],animations=new Set();
-   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
-    if(!entry.isIntersecting)return;observer.unobserve(entry.target);
-    const el=entry.target,final=el.dataset.count;if(reduce.matches||!/[0-9]/.test(final))return;
-    const start=performance.now();
-    const tick=now=>{const p=Math.min(1,(now-start)/1100),e=1-Math.pow(1-p,3);el.textContent=final.replace(/\d+/g,n=>String(Math.round(Number(n)*e)));if(p<1){const id=requestAnimationFrame(t=>{animations.delete(id);tick(t)});animations.add(id)}else el.textContent=final};
-    tick(start);
-   }),{threshold:.5});
-   counters.forEach(el=>observer.observe(el));
-   const stopCounts=()=>{if(reduce.matches){animations.forEach(cancelAnimationFrame);animations.clear();counters.forEach(el=>el.textContent=el.dataset.count)}};
-   reduce.addEventListener('change',stopCounts);
-   cleanup=()=>{observer.disconnect();animations.forEach(cancelAnimationFrame);window.removeEventListener('resize',resize);reduce.removeEventListener('change',stopCounts)};
+   cleanup=()=>window.removeEventListener('resize',resize);
 
   }
  };
