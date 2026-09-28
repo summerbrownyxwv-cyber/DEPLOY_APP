@@ -19,5 +19,14 @@ for(const base of [root,path.join(root,'dist')]){
   }
  }
  for(const file of list(prototype).filter(file=>/\.(js|css|html)$/.test(file)))assert(!/\.(png|jpe?g)\b/i.test(fs.readFileSync(file,'utf8')),`Old bitmap reference ${file}`);
+ // Render dynamic filenames as well: a default ext='png' bypasses literal-path checks.
+ vm.runInNewContext(fs.readFileSync(path.join(prototype,'franchise-page.js'),'utf8'),context);
+ for(const application of [false,true]){
+  const html=context.window.XunAiFranchise.render(application);
+  for(const [,url] of html.matchAll(/<img[^>]+src="([^"]+)"/g)){
+   assert(!/\.(png|jpe?g)$/i.test(url),`Legacy dynamic image ${url}`);
+   assert(fs.existsSync(path.resolve(prototype,url)),`Missing dynamic image ${url}`);
+  }
+ }
  console.log(`PASS: ${base===root?'source':'dist'} WebP masters and variants exist; no PNG/JPG files or runtime references.`);
 }

@@ -220,7 +220,7 @@ function formTemplate(step = 1) {
     return `<form class="prototype-form" data-step="2" novalidate>
       <p class="form-progress">STEP 02 / 意向信息</p>
       <div class="form-grid">
-        <label class="field">意向店型<select name="store_type" required autocomplete="off"><option value="">请选择</option><option>标准店</option><option>轻享店</option><option>黑金店</option><option>暂不确定</option></select></label>
+        <label class="field">意向店型<select name="store_type" required autocomplete="off"><option value="">请选择</option><option>标准店</option><option>轻享店</option><option>暂不确定</option></select></label>
         <label class="field">意向区域<input name="area" required autocomplete="off" placeholder="[城市 / 商圈]…" /></label>
         <label class="field span-2">补充说明<textarea name="note" autocomplete="off" placeholder="[请勿在原型填写真实敏感信息]…"></textarea></label>
       </div>
@@ -515,12 +515,14 @@ function closeDrawer() {
 
 function openService(type) {
   const content = {
-    consumer: ["消费者服务", "[咨询方式、服务时间、门店查询与二维码待提供]"],
-    business: ["商务咨询", "[商务合作类型、联系人与表单入口待提供]"],
+    consumer: ["消费者服务", "服务热线：0713-3671098。官方邮箱：aat@dongyuanjt.com。"],
+    business: ["合作咨询", "加盟咨询：4009-315-728。机构及渠道合作：0755-22664794。"],
     verify: ["官方验证 / 投诉", "[官方渠道验证、投诉流程与隐私说明待提供]"],
   }[type] || ["官方服务", "[内容待提供]"];
   dialogTitle.textContent = content[0];
   dialogDescription.textContent = content[1];
+  document.querySelector('#service-business-links').hidden = type !== 'business';
+  document.querySelector('#service-consumer-links').hidden = type !== 'consumer';
   document.querySelector('#service-complaint').hidden = type === 'verify';
   if (!dialog.open) { serviceLastFocused = document.activeElement; dialog.showModal(); }
   else dialog.querySelector('[value=close]').focus();
@@ -539,6 +541,7 @@ document.addEventListener("click", (event) => {
   const serviceButton = event.target.closest(".service-open");
   if (serviceButton) openService(serviceButton.dataset.service);
   if (routeLink && drawer.classList.contains("is-open")) closeDrawer();
+  if (routeLink && dialog.open) dialog.close();
 });
 
 document.addEventListener("keydown", (event) => {

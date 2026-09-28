@@ -84,6 +84,7 @@
         <a class="route-link" href="#/about/culture"><span>06</span>关于我们</a>
       </nav>
       <div class="drawer-actions">
+        <button class="pill-button service-open" type="button" data-service="business">合作咨询</button>
         <button class="pill-button service-open" type="button" data-service="consumer">消费者服务</button>
         <button class="pill-button service-open" type="button" data-service="verify">投诉通道</button>
       </div>
@@ -91,8 +92,8 @@
 
     <main id="main-content" tabindex="-1"></main>
 
-    <button class="service-rail service-open" type="button" data-service="consumer" aria-label="打开消费者服务">
-      <b>寻艾</b><span>官方服务</span>
+    <button class="service-rail service-open" type="button" data-service="business" aria-label="打开合作咨询">
+      <b>寻艾</b><span>合作咨询</span>
     </button>
 
     <section class="xf-cta"><img src="../../assets/responsive/figma-brand-v2-imgFrame72-1920.webp" srcset="../../assets/responsive/figma-brand-v2-imgFrame72-768.webp 768w, ../../assets/responsive/figma-brand-v2-imgFrame72-1440.webp 1440w, ../../assets/responsive/figma-brand-v2-imgFrame72-1920.webp 1920w" sizes="100vw" alt="寻艾空间" width="4096" height="2731" loading="lazy" decoding="async"><div><h2>了解寻艾，<br>从一次交流开始。</h2><p>加盟条件、总部支持与合作意向，统一进入加盟合作。</p><a class="pill-button route-link" href="#/franchise/apply">提交合作意向</a></div></section>
@@ -122,7 +123,9 @@
         </div>
         <h2 id="service-title">消费者服务</h2>
         <p id="service-description">[服务说明与官方联系方式待提供]</p>
-        <div class="dialog-placeholder" aria-hidden="true">QR / PHONE / FORM<br />[官方入口占位]</div>
+        <div id="service-business-links" class="service-contact-links" hidden><a href="tel:4009315728">拨打加盟电话：4009-315-728</a><a href="tel:075522664794">拨打商务电话：0755-22664794</a><a class="route-link" href="#/franchise">了解加盟方案</a><a class="route-link" href="#/about/business">机构与渠道合作</a></div>
+        <div id="service-consumer-links" class="service-contact-links"><a href="tel:07133671098">拨打服务热线：0713-3671098</a><a href="mailto:aat@dongyuanjt.com">邮件联系官方服务</a></div>
+        <button class="pill-button service-open" type="button" data-service="consumer">消费者服务</button>
         <button class="pill-button service-open" id="service-complaint" type="button" data-service="verify">投诉通道</button>
         <button class="pill-button" value="close">完成查看</button>
       </form>

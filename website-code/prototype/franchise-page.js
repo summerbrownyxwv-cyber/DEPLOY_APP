@@ -1,10 +1,10 @@
 /* Figma 487:443. Original photographs and copy; shared navigation and form. */
 window.XunAiFranchise=(()=>{
  const base='../../assets/figma-franchise-v1/';
- const img=(name,alt,priority=false,ext='png')=>`<img src="${base}${name}.${ext}" alt="${alt}" width="1440" height="960" ${priority?'fetchpriority="high"':'loading="lazy"'}>`;
+ const img=(name,alt,priority=false,ext='webp')=>`<img src="${base}${name}.${ext}" alt="${alt}" width="1440" height="960" ${priority?'fetchpriority="high"':'loading="lazy"'}>`;
  const media=(name,alt,cls='')=>`<figure class="xj-media ${cls}">${img(name,alt)}</figure>`;
  const supports=[['选址支持','大数据选址 + 模型数据参考'],['装修设计','统一设计，全套图纸'],['培训支持','线上小程序学习 + 总部实操培训 + 后期驻店指导'],['物流配送','自有小程序下单，物流直达'],['开业支持','开业方案 + 线上引流 + 人员指导'],['老师下店','根据门店情况，老师下店帮扶门店'],['品牌宣传','品牌团队全域全渠道矩阵式宣传'],['运营支持','门店日常经营，内群实时沟通解决'],['督导巡店','售后服务，解决问题']];
- const steps=['意向签约，锁定名额','商圈选址，快速落位','签约打款，开店启动','设计培训，双管齐下','装修验收，形象满意','策划开业，持续火爆'];
+ const steps=['意向签约，锁定名额','商圈选址，快速落位','签约打款，开店启动','设计培训，双管齐下','装修验收，形象满意','策划开业，运营衔接'];
  const reviewPhoto=(name,alt)=>`<img src="../../assets/review-20260920/${name}.webp" alt="${alt}" width="1000" height="1000" loading="lazy">`;
  const processCopy=['沟通合作意向，了解店型与合作条件。','结合意向城市与商圈，开展选址沟通。','确认合作细节，推进签约与开店准备。','衔接空间设计与人员培训，准备门店运营。','完成装修与验收，落实门店形象。','筹备开业活动，衔接后续运营支持。'];
  let cleanup=()=>{};
@@ -52,7 +52,7 @@ window.XunAiFranchise=(()=>{
     });
    };
    const wheel=event=>{
-    if(mobile.matches||event.ctrlKey||Math.abs(event.deltaY)<4)return;
+    if(innerWidth<1200||event.ctrlKey||Math.abs(event.deltaY)<4)return;
     const rect=process.getBoundingClientRect(),header=document.querySelector('.site-header').getBoundingClientRect().bottom;
     if(rect.top<header-8||rect.bottom>innerHeight)return;
     const next=current+(event.deltaY>0?1:-1);

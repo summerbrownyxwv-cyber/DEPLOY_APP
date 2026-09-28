@@ -1,4 +1,23 @@
 /* Shared type rhythm and interaction states; page-specific compositions remain intact. */
+.service-contact-links{display:grid;gap:8px;margin-block:16px}
+.service-contact-links a{display:flex;align-items:center;min-height:44px;font:500 16px/1.6 var(--x-font-sans);color:inherit;text-underline-offset:4px}
+.xo-news-more{display:flex;justify-content:flex-end;margin-top:24px}
+#main-content :is(.xa-number,.xa-stats dd,.xf-years,time,table,form,input,select,textarea){font-family:var(--x-font-sans)}
+#main-content :is(.xj-store h3,.xo-story h3,.xs-card-label,.xa-matrix dt,.xj-support-grid dt,form h2,form h3){font-family:var(--x-font-sans);font-weight:500}
+#main-content :is(.xa-number,.xa-stats dd,.xj-scale,.field>span,.xo-field>span){font-weight:500}
+#main-content strong{font-family:var(--x-font-sans);font-weight:600}
+.xs-page .xs-booklet-story-copy{justify-content:center;gap:16px}
+.xs-page .xs-booklet-square+h2{margin-top:clamp(24px,3vw,48px)}
+.xs-page .xs-booklet-story-copy>.xs-pending{margin-block:0}
+.xs-page .xs-booklet-story-copy>.xs-booklet-strip{margin-top:12px}
+.xa-intro>figure:has(.xa-demo-video){display:flex;align-items:center;margin:0;min-width:0}
+.xa-intro .xa-demo-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:8px;background:#161616}
+.xj-process .xj-process-nav li button span{font-family:var(--x-font-sans);font-weight:500}
+@media(min-width:768px) and (max-width:1199.98px){
+ .xj-process .xj-process-nav li{opacity:1}
+ .xj-page .xj-process .xj-process-nav li .xj-step-copy{display:block;opacity:1;padding-bottom:16px}
+ .xj-process .xj-step-copy p,.xj-support-grid dd{font-size:16px;line-height:1.75}
+}
 /* Store directory: shared across phone, tablet and desktop. */
  #locations>.xs-section-heading>h2{font-size:1.875rem}
  #locations .xs-location-group>h3{font-size:1.5rem}

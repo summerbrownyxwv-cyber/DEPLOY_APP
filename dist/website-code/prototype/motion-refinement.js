@@ -95,7 +95,7 @@
     let visible=false;
     const sync=()=>{
      const paused=!visible||document.hidden||reduce.matches||!!el.closest('.is-paused');
-     if(el.tagName==='VIDEO'){el.muted=true;el.loop=true;el.controls=reduce.matches;if(paused)el.pause();else el.play().catch(()=>{})}
+     if(el.tagName==='VIDEO'){el.muted=true;el.loop=true;el.controls=reduce.matches&&!el.hasAttribute('data-demo-video');if(paused)el.pause();else el.play().catch(()=>{})}
      else el.getAnimations({subtree:true}).forEach(a=>paused?a.pause():a.play());
     };
     if('IntersectionObserver' in window){const visibility=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync()},{threshold:0});visibility.observe(el);disposers.push(()=>visibility.disconnect())}

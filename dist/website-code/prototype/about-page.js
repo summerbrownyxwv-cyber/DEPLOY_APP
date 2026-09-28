@@ -11,7 +11,7 @@ window.XunAiAbout=(()=>{
   ['imgRectangle69','恁可来咧！寻艾开进洛阳盛唐至尊'],
   ['imgRectangle71','一座12万平方米的艾草工厂，建在李时珍的家乡']
  ];
- const group=(n)=>`<div class="xo-news-group" role="group" aria-label="第 ${n+1} 组，共 3 组">${news.map(([photo,title],i)=>`<a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzk0MDYxMzUxOQ==&amp;scene=124" target="_blank" rel="noopener noreferrer" class="xo-story ${n?'xo-placeholder':''}">${n?`<div class="xo-image-placeholder">资讯图片占位 · ${n+1}—${i+1}</div>`:img(photo,title)}<h3>${n?`品牌资讯标题待补充 · ${n+1}—${i+1}`:title}</h3></a>`).join('')}</div>`;
+ const group=(n)=>`<div class="xo-news-group" role="group" aria-label="第 ${n+1} 组，共 3 组">${news.map(([photo,title],i)=>`<article class="xo-story ${n?'xo-placeholder':''}">${n?`<div class="xo-image-placeholder">资讯图片占位 · ${n+1}—${i+1}</div>`:img(photo,title)}<h3>${n?`品牌资讯标题待补充 · ${n+1}—${i+1}`:title}</h3></article>`).join('')}</div>`;
  const field=(name,label,type='text',required=true)=>`<label class="xo-field"><span>${label}${required?' *':'（选填）'}</span><input name="${name}" type="${type}" ${required?'required':''} ${name==='name'?'autocomplete="name"':name==='email'?'autocomplete="email"':name==='phone'?'autocomplete="tel"':''}><small class="xo-error"></small></label>`;
  let cleanup=()=>{};
  function form(index){
@@ -21,7 +21,7 @@ window.XunAiAbout=(()=>{
  return {
   render(page){
    const index=paths.indexOf(page.split('/').pop());if(index>=0)return form(index);
-   return `<div class="xo-page"><section class="xo-hero"><div class="xo-hero-photo">${img('imgRectangle53','东元集团团队合影',true)}</div></section><div class="xo-content"><section class="xo-announcements" id="announcements"><header><h2>置顶公告</h2></header><div class="xo-announcement-list">${[1,2,3,4].map(n=>`<details><summary><span>0${n}</span><h3>公告标题待补充</h3></summary><div class="xo-announcement-copy"><p>公告正文占位 · 0${n}</p><p>发布日期、摘要及公告内容待补充。</p></div></details>`).join('')}</div></section><section class="xo-news" id="news"><header><h2><a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzk0MDYxMzUxOQ==&amp;scene=124" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">品牌动态</a></h2></header><div class="xo-news-viewport" tabindex="0" aria-label="品牌动态，使用左右方向键或滑动浏览">${[0,1,2].map(group).join('')}</div></section><section class="xo-join" id="join" aria-label="加入寻艾与合作">${titles.map((title,i)=>`<a class="xo-join-card route-link" href="#/about/${paths[i]}">${img(photos[i],title)}<h2>${title}</h2></a>`).join('')}</section></div></div>`;
+   return `<div class="xo-page"><section class="xo-hero"><div class="xo-hero-photo">${img('imgRectangle53','东元集团团队合影',true)}</div></section><div class="xo-content"><section class="xo-announcements" id="announcements"><header><h2>置顶公告</h2></header><div class="xo-announcement-list">${[1,2,3,4].map(n=>`<details><summary><span>0${n}</span><h3>公告标题待补充</h3></summary><div class="xo-announcement-copy"><p>公告正文占位 · 0${n}</p><p>发布日期、摘要及公告内容待补充。</p></div></details>`).join('')}</div></section><section class="xo-news" id="news"><header><h2>品牌动态</h2></header><div class="xo-news-viewport" tabindex="0" aria-label="品牌动态，使用左右方向键或滑动浏览">${[0,1,2].map(group).join('')}</div><div class="xo-news-more"><a class="xu-detail-link" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&amp;__biz=Mzk0MDYxMzUxOQ==&amp;scene=124" target="_blank" rel="noopener noreferrer" aria-label="前往公众号阅读（新窗口打开）">前往公众号阅读<span aria-hidden="true">↗</span></a></div></section><section class="xo-join" id="join" aria-label="加入寻艾与合作">${titles.map((title,i)=>`<a class="xo-join-card route-link" href="#/about/${paths[i]}">${img(photos[i],title)}<h2>${title}</h2></a>`).join('')}</section></div></div>`;
   },
   mount(main,page){
    cleanup();cleanup=()=>{};const root=main.querySelector('.xo-page');if(!root)return;
@@ -50,7 +50,6 @@ window.XunAiAbout=(()=>{
    root.querySelectorAll('.xo-announcement-list details').forEach(item=>{
     item.addEventListener('toggle',()=>{if(item.open)root.querySelectorAll('.xo-announcement-list details').forEach(other=>{if(other!==item)other.open=false})});
    });
-   root.querySelector('#news').addEventListener('click',event=>{if(event.defaultPrevented||!event.target.closest('a'))return;if(!window.confirm('即将前往微信，查看寻艾品牌动态。若浏览器未自动打开微信，请在微信中打开此链接。是否继续？'))event.preventDefault();});
    const viewport=root.querySelector('.xo-news-viewport'),reduce=matchMedia('(prefers-reduced-motion:reduce)');
    const track=document.createElement('div');track.className='xo-news-track';
    while(viewport.firstChild)track.append(viewport.firstChild);viewport.append(track);

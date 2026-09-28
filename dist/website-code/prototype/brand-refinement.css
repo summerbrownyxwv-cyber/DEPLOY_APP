@@ -15,7 +15,7 @@
 }
 *{min-width:0}
 body{font-family:var(--x-font-sans);font-size:var(--x-body-size);line-height:1.75;overflow-x:visible;font-synthesis:none}
-h1,h2,h3{font-family:var(--x-font-display);font-weight:400!important;letter-spacing:0;line-height:1.4;text-wrap:balance}
+h1,h2,h3{font-family:var(--x-font-display);font-weight:400;letter-spacing:0;line-height:1.4;text-wrap:balance}
 p{overflow-wrap:break-word}
 [hidden]{display:none!important}
 .intro-loader,.route-curtain,.hero-promo,.total-section,.brand-orbit,.row-preview{display:none!important}

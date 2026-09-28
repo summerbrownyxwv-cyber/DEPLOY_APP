@@ -170,12 +170,21 @@
   main form button[type=submit]{width:100%}
   .service-dialog,.xr-complaint{width:calc(100% - 2rem);max-width:calc(100% - 2rem)}
   .dialog-shell,.xr-complaint .dialog-shell{padding:1.25rem}
-  /* Mobile system: native single-card browsing and readable vertical history. */
-  .xf-history-track{flex-direction:column;transform:none!important;gap:1.5rem}
-  .xf-history-card,.xf-history-card.is-active{flex:none;width:100%;color:inherit}
-  .xf-history-viewport{overflow:visible}
-  .xf-years{flex-wrap:wrap;overflow:visible;gap:.5rem;margin:1.5rem 0}
-  .xf-years button{flex:0 0 calc((100% - 1.5rem)/4)}
+  /* Share history browsing and honor layouts across phones and tablets. */
+  .xf-history-viewport{overflow:hidden;touch-action:pan-y;padding:2px}
+  .xf-history-track{flex-direction:row;gap:1.25rem;transform:translateX(var(--mobile-history-offset,0px))!important}
+  .xf-history-card,.xf-history-card.is-active{flex:0 0 88%;width:auto;min-height:0;align-self:stretch;padding:1.25rem;gap:1.5rem;color:inherit}
+  .xf-history-card .xf-history-copy{flex:1;justify-content:space-between}
+  .xf-history-card .xf-history-visual{aspect-ratio:4/3}
+  .xf-history-card time{font-size:2.25rem}
+  .xf-history-copy>span{font-size:1rem;line-height:1.7}
+  .xf-years{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:.75rem;margin:2rem 0 2.5rem;padding-bottom:.5rem}
+  .xf-years button{flex:0 0 calc((100% - 3rem)/5);min-width:3rem}
+  .xf-honor>h3{display:flex;align-items:baseline;gap:20px}
+  .xf-honor>h3>span{font-size:48px}
+  .xf-certificate summary span{font-size:16px}
+  #recognition .xf-honor:nth-of-type(3)>h3{justify-self:end;justify-content:flex-end;text-align:right}
+  #recognition .xf-honor:nth-of-type(3)>h3>span{order:1}
   .xb-history-list{flex-direction:column;overflow:visible}
   .xb-history-list>li:last-child{margin-right:0}
   .xo-news-viewport{overflow-x:auto;touch-action:pan-x pan-y;scroll-snap-type:x mandatory}
@@ -200,15 +209,6 @@
     .xf-hero-copy>img{width:9rem;height:3.25rem}
     #main-content .xf-hero-copy h1{font-size:clamp(1.125rem,4.7vw,1.25rem);line-height:1.5}
     #main-content .xf-hero-copy p{font-size:.875rem;line-height:1.8;max-width:28ch}
-    .xf-history-viewport{overflow:hidden;touch-action:pan-y;padding:2px}
-    .xf-history-track{flex-direction:row;gap:1.25rem;transform:translateX(var(--mobile-history-offset,0px))!important}
-    .xf-history-card,.xf-history-card.is-active{flex:0 0 88%;width:auto;min-height:0;align-self:stretch;padding:1.25rem;gap:1.5rem}
-    .xf-history-card .xf-history-copy{flex:1;justify-content:space-between}
-    .xf-history-card .xf-history-visual{aspect-ratio:4/3}
-    .xf-history-card time{font-size:2.25rem}
-    .xf-history-copy>span{font-size:1rem;line-height:1.7}
-    .xf-years{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;gap:.75rem;margin:2rem 0 2.5rem;padding-bottom:.5rem}
-    .xf-years button{flex:0 0 calc((100% - 3rem)/5);min-width:3rem}
     .xf-subheading,.xa-scenario-heading{flex-direction:row;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1.75rem}
     .xf-subheading>a,.xa-scenario-heading>a{flex-shrink:0;min-height:2.75rem}
     .xf-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem .75rem}
@@ -217,8 +217,6 @@
     #main-content .xf-products figcaption{--x-type-caption:1.25rem;font-size:1.25rem;line-height:1.5}
     .xf-terminal{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem .75rem}
     .xf-terminal>a{grid-column:1/-1}
-    #recognition .xf-honor:nth-of-type(3)>h3{justify-self:end;justify-content:flex-end;text-align:right}
-    #recognition .xf-honor:nth-of-type(3)>h3>span{order:1}
     .xs-strength-layout{gap:2rem}
     .xs-strength-thumbs{grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
     .xs-strength-photo{aspect-ratio:224/290}
@@ -259,7 +257,6 @@
     .xh-industry-grid,.xs-strength-thumbs,.xf-products,.xo-join{grid-template-columns:repeat(2,minmax(0,1fr))}
     .xs-service-group{grid-template-columns:repeat(2,minmax(0,1fr))}
     .xo-news-viewport{max-width:36rem;margin-inline:auto}
-    .xf-history-track{max-width:36rem;margin-inline:auto}
     .xs-type>figure,.xs-booklet-lead>figure,.xs-booklet-story>figure,.xs-booklet-ending>figure,
     .xf-intro figure,.xf-group-grid figure,.xj-output-grid .xj-media,.xo-form-photo{width:100%;max-width:36rem;justify-self:center;margin-inline:auto}
     .xj-process-photos{width:100%;max-width:32rem;justify-self:start;aspect-ratio:4/3}

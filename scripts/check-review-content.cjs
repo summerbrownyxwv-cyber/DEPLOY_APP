@@ -11,7 +11,7 @@ const culture=context.window.XunAiAbout.render('/about/culture');
 assert(culture.includes('品牌动态'));
 assert(!culture.includes('class="xo-culture"'));
 assert(!culture.includes('<p>东元集团</p>'));
-assert.equal((culture.match(/profile_ext\?action=home/g)||[]).length,13);
+assert.equal((culture.match(/profile_ext\?action=home/g)||[]).length,1);
 for(const type of ['standard','black-gold']){
  const html=context.window.XunAiStores.render('/stores/'+type+'/detail');
  assert(!html.includes('2025年，寻艾将'));
