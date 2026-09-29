@@ -16,6 +16,7 @@
   const terminal=()=>`<section class="xf-section" id="stores"><header class="xf-heading"><h2>终端服务</h2><p>艾灸养生，<br>连接日常。</p></header><div class="xf-subheading"><h3>寻艾</h3><a class="route-link" href="#/stores/standard">查看所有${icon('imgArrowNarrowUpRight')}</a></div><div class="xf-terminal"><a class="route-link" href="#/stores/black-gold">${image('imgFrame72','寻艾艾灸馆黑金店')}<p class="xf-muted">寻艾艾灸馆黑金店</p><p>寻艾以艾草产业为基础，将产品、线下服务与数字化能力连接起来。从原材品质到到店体验，为长期经营建立可持续的服务体系。</p></a><figure>${image('imgFrame73','服务场景')}<figcaption><span>服务场景</span>到店体验与居家养护</figcaption></figure><figure>${image('imgFrame74','产品销售')}<figcaption><span>产品销售</span>从艾草育种到终端服务</figcaption></figure></div></section>`;
   const honors=evidence=>`<section class="xf-section" id="recognition"><header class="xf-heading"><div><h2>企业荣誉</h2><p>资质、荣誉与社会责任。</p></div></header>${evidence.map(([category,items],i)=>`<section class="xf-honor"><h3><span>0${i+1}</span>${category}</h3><div>${[...items].sort((a,b)=>{const key=date=>{const n=date.match(/\d+/g);return n?Number(n[0])*10000+Number(n[1]||1)*100+Number(n[2]||1):Infinity};return key(a[2])-key(b[2])}).map(([title,detail,date,id],n)=>`<details class="xf-certificate"><summary><time>${date||'日期待核实'}</time><span>${title}</span>${icon('imgPlus')}</summary><div><p>${detail}</p>${id?`<a href="../../assets/02-brand-detail/02-brand-part2-08-${id}.webp" target="_blank" rel="noopener noreferrer"><img src="../../assets/02-brand-detail/02-brand-part2-08-${id}.webp" alt="${title}原件" width="640" height="450" loading="lazy"></a>`:'<p>原件待补充</p>'}</div></details>`).join('')}</div></section>`).join('')}</section>`;
   window.XunAiFigmaBrand={
+    businesses,
     render(evidence){
       const events={2015:'售出第一盒艾灸器1.0；自此成为品牌纪念',2016:'在艾都蕲春成立生产基地',2017:'艾灸器2.0正式发布',2019:'研发、生产、仓储、一体化新园区正式落成',2020:'与中国中医科学院中药研究所签约启动，艾草种苗及基因稳定性研究',2021:'艾草行业领先的智能化提取产线正式投产',2022:'与蕲春政府及行业协会，共同成立蕲艾产业技术研究院为行业赋能',2023:'艾草新品种[蕲优一号]培育并注册成功',2024:'获得全国首张《品质中药材 艾叶》认证证书',2025:'寻艾升级，推进门店服务与连锁体系建设'};
       const history=Object.entries(events).map(([year,copy])=>[year,'',copy]);
@@ -59,6 +60,7 @@
       viewport.addEventListener('click',event=>{if(swiped){event.preventDefault();event.stopPropagation();swiped=false;}},true);
       viewport.addEventListener('dragstart',event=>event.preventDefault());
       const cards=[...main.querySelectorAll('[data-history]')],years=[...main.querySelectorAll('[data-year]')],historyTrack=main.querySelector('.xf-history-track');
+      if(!historyTrack)return;
       let selectedYear=0;
       const historyMobile=matchMedia('(max-width:1023.98px)');
       const positionYear=()=>{const offset=cards[selectedYear].offsetLeft-cards[0].offsetLeft;historyTrack.style.transform=`translateX(-${offset}px)`;if(historyMobile.matches)historyTrack.style.setProperty('--mobile-history-offset',`-${offset}px`);else historyTrack.style.removeProperty('--mobile-history-offset');};

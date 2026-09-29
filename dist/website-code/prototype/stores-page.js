@@ -158,6 +158,7 @@ window.XunAiStores=(()=>{
  };
  const comparison=()=>`<section class="xs-section" id="types">${heading('店型对比','寻艾艾灸馆<br>黑金店 · 标准店')}${[['黑金店','imgE4A99442'],['标准店','imgRectangle']].map(([type,file],i)=>`<article class="xs-type ${i?'xs-type-reverse':''}"><div class="xs-type-copy"><h3>寻艾艾灸馆<br>${type}</h3>${pending(type+'定位与差异说明')}<a class="xs-booklet-open route-link" href="#/stores/${i?'standard':'black-gold'}/detail">查看详情 ${arrow()}</a></div><figure>${image(file,type+(i?'设计参考':'空间'))}${i?'<figcaption>标准店设计参考</figcaption>':''}</figure></article>`).join('')}</section>`;
  return {
+  locations,
   render(page){
    if(page.endsWith('/detail'))return `<div class="xs-page"><section class="xs-section xs-booklet">${booklet(page==='/stores/standard/detail')}</section></div>`;
    if(page==='/stores/services')return `<div class="xs-page xs-services">${nav(page)}${serviceSection(true)}</div>`;

@@ -8,7 +8,7 @@ const base=process.env.REVIEW_URL||'http://127.0.0.1:4180/website-code/prototype
   const page=await browser.newPage({reducedMotion:'reduce'}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   const routes=['/','/brand/about','/brand/history','/brand/products','/stores/standard','/stores/black-gold','/stores/services','/stores/standard/detail','/stores/black-gold/detail','/ai','/franchise','/franchise/apply','/about/culture','/about/business','/about/careers','/about/overseas'];
-  for(const width of [390,820,1440]){
+  for(const width of [390,820,1440,1920,3840]){
    await page.setViewportSize({width,height:1180});
    for(const route of routes){
     await page.goto(base+'?review='+encodeURIComponent(route)+'#'+route);await page.locator('main>*').first().waitFor();await page.evaluate(()=>document.fonts.ready);
