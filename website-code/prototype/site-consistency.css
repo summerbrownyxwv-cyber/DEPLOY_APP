@@ -165,15 +165,6 @@ main :is(.xj-wrap,.xo-content,.xa-content,.xs-section,.xf-section)>*{min-width:0
  .xs-service-card{min-height:0;aspect-ratio:auto;padding:1rem .5rem}
  .xs-card-photo{width:82%;height:auto;aspect-ratio:3/4;margin-bottom:1.5rem}
  .xs-card-label{gap:.5rem;flex-wrap:wrap;font-size:var(--x-type-body)}
- .xj-process-grid{display:block}
- .xj-process-nav{position:static}
- .xj-process-nav ol{display:block}
- .xj-process-nav li>button{grid-template-columns:4rem 1fr;min-height:3rem}
- .xj-process-nav .xj-step-copy{display:block;grid-template-rows:none}
- .xj-process-nav .xj-step-copy[hidden],.xj-step-photo[hidden]{display:none}
- .xj-step-photo{margin:1.25rem 0 1.5rem;width:100%;aspect-ratio:4/3;overflow:hidden}
- .xj-step-photo img{display:block;width:100%;height:100%;object-fit:cover}
- .xj-process-photos{display:none}
  .xj-system .xj-media{min-height:0;height:auto;aspect-ratio:4/3}
  .xj-output-grid .xj-media{height:auto;min-height:0;aspect-ratio:4/3}
  .xo-join{grid-template-columns:1fr;gap:1.5rem;padding-inline:0}
@@ -249,7 +240,18 @@ main :is(.xj-wrap,.xo-content,.xa-content,.xs-section,.xf-section)>*{min-width:0
 .xj-output-grid>.xj-media{align-self:end}
 .xj-output-grid>.xj-media img{inset:-6%;width:112%;height:112%;max-width:none}
 .xj-process{padding-block:3rem}
-@media(min-width:768px){
+@media(max-width:1023.98px){
+ .xj-process-grid{display:block}
+ .xj-process-nav{position:static}
+ .xj-process-nav ol{display:block;width:100%}
+ .xj-process-nav li>button{grid-template-columns:4rem 1fr;min-height:3rem}
+ .xj-process-nav .xj-step-copy{display:block;grid-template-rows:none}
+ .xj-process-nav .xj-step-copy[hidden],.xj-step-photo[hidden]{display:none}
+ .xj-step-photo{margin:1.25rem 0 1.5rem;width:100%;aspect-ratio:4/3;overflow:hidden}
+ .xj-step-photo img{display:block;width:100%;height:100%;object-fit:cover}
+ .xj-process-photos{display:none}
+}
+@media(min-width:1024px){
  .xj-process-grid{min-height:0;align-items:start}
  .xj-process-nav{position:relative;top:auto}
  .xj-process-nav li{opacity:.4;transition:opacity 400ms var(--x-motion-ease-premium)}

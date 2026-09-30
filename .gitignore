@@ -1,0 +1,4 @@
+dist/
+.DS_Store
+scripts/prepare-responsive-images.cjs
+assets/fonts/README.md

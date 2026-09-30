@@ -8,10 +8,12 @@
   .xs-hero-content{max-width:var(--wide-reading);margin-inline:auto}
   .xs-hero-media{width:100%;max-width:none;margin-inline:auto}
   .xs-type-copy,.xs-strength-feature>p,.xf-intro-copy,.xj-system-copy,.xa-intro-copy,.xa-value-copy{max-width:640px}
+  .xs-type-reverse .xs-type-copy{justify-self:end}
+  #main-content .xj-store h3{font-weight:300}
   .xh-home .xh-opening-copy{width:100%;max-width:1760px;margin-inline:auto}
   #main-content .xh-opening h1{font-size:72px;max-width:1440px}
   .xa-page .xa-stage{width:min(960px,76svh,100%)}
-  .xa-page .xa-hero-bottom{max-width:1760px;margin-inline:auto}
+  .xa-page .xa-hero-bottom{max-width:none;margin-inline:auto}
   .xs-service-layout{grid-template-columns:1fr;gap:32px}
   .xs-project{display:grid;grid-template-columns:minmax(0,1440px) auto;align-items:end;gap:32px}
   .xs-project-copy{max-width:1440px;display:grid;grid-template-columns:1fr 1fr;column-gap:64px}
@@ -39,7 +41,7 @@
 
 /* Responsive review: shared rails, restrained dark disclosures, brand headings. */
 :root{--x-page-gutter:clamp(20px,4.5vw,172px)}
-#main-content :is(.xf-group,.xf-terminal-section,#stores,#locations){padding-block:clamp(36px,4vw,72px)}
+#main-content :is(.xf-group,.xf-terminal-section,#stores,#locations,#history){padding-block:clamp(36px,4vw,72px)}
 #main-content .xh-home #locations{padding-block:clamp(36px,4vw,72px);--xu-row-hover:rgb(255 255 255 / .08)}
 #main-content #locations .xu-disclosure>summary{border-radius:0;background:transparent}
 #main-content #locations .xu-disclosure>summary:is(:hover,:focus-visible){background:rgb(0 0 0 / .045);color:#20221f}

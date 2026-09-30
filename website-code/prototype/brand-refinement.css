@@ -1,7 +1,7 @@
 /* Active brand layer. Brand colors are transcribed from manual pp.26–27. */
-@font-face{font-family:"XunAi OPPO";src:url("../../assets/fonts/oppo-sans.ttf") format("truetype");font-weight:100 700;font-display:swap}
-@font-face{font-family:"XunAi Mincho";src:url("../../assets/fonts/tsukushi-mincho-r.ttf") format("truetype");font-weight:400;font-display:swap}
-@font-face{font-family:"XunAi Crimson";src:url("../../assets/fonts/crimson-regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"XunAi OPPO";src:url("../../assets/fonts/oppo-sans.woff2") format("woff2");font-weight:100 700;font-display:swap}
+@font-face{font-family:"XunAi Mincho";src:url("../../assets/fonts/tsukushi-mincho-r.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"XunAi Crimson";src:url("../../assets/fonts/crimson-regular.woff2") format("woff2");font-weight:400;font-display:swap}
 :root{
   --x-brand-olive:#8b8b32;--x-brand-brown:#965f36;--x-brand-dark-olive:#5b6135;
   --x-brand-pale:#e8edd6;--x-brand-cream:#fffae6;

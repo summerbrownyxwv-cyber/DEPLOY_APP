@@ -37,7 +37,7 @@ window.XunAiFranchise=(()=>{
    gallery.scrollLeft=gallery.firstElementChild.offsetWidth*.65;
    const process=main.querySelector('.xj-process'),photoList=process.querySelector('.xj-process-photos');
    const photos=[...photoList.children],buttons=[...process.querySelectorAll('[data-process-step]')];
-   const mobile=matchMedia('(max-width:767px)');
+   const mobile=matchMedia('(max-width:1023.98px)');
    let current=0,lastWheel=0,touchY=null;
    const select=index=>{
     current=index;
