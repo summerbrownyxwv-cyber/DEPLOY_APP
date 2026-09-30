@@ -10,8 +10,6 @@
   .xs-type-copy,.xs-strength-feature>p,.xf-intro-copy,.xj-system-copy,.xa-intro-copy,.xa-value-copy{max-width:640px}
   .xs-type-reverse .xs-type-copy{justify-self:end}
   #main-content .xj-store h3{font-weight:300}
-  .xh-home .xh-opening-copy{width:100%;max-width:1760px;margin-inline:auto}
-  #main-content .xh-opening h1{font-size:72px;max-width:1440px}
   .xa-page .xa-stage{width:min(960px,76svh,100%)}
   .xa-page .xa-hero-bottom{max-width:none;margin-inline:auto}
   .xs-service-layout{grid-template-columns:1fr;gap:32px}
@@ -64,7 +62,6 @@
   :root{--wide-columns:6;--wide-gap:32px}
   .xs-hero-media{max-width:none}
   .xs-hero-media video{width:100%;height:100%;object-fit:cover}
-  #main-content .xh-opening h1{font-size:80px}
   .xs-card-photo{width:clamp(240px,12vw,320px)}
   .xo-news-group{flex-basis:calc((100% - 24px)/2)}
   .xa-page .xa-stage{width:min(1120px,76svh,100%)}
