@@ -58,7 +58,7 @@
 .xa-star-trails i:nth-child(3){inset:calc(50% - 57vw) auto auto calc(50% - 57vw);width:114vw;animation-duration:160s}
 .xa-device-shadow{background:radial-gradient(ellipse,#383b3e22,transparent 68%)}
 .xa-matrix-row,.xa-stats>div{transition:background 350ms,box-shadow 350ms}
-.xa-matrix-row:hover,.xa-stats>div:hover{background:#f1f2f3;box-shadow:inset 3px 0 #92979b}
+.xa-matrix-row:hover,.xa-stats>div:hover{background:#f1f2f3;box-shadow:inset 1px 0 #92979b}
 .xa-number,[data-count]{font-variant-numeric:tabular-nums}
 .xa-matrix-aside{min-width:0}
 .xa-matrix-aside{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;gap:32px}
