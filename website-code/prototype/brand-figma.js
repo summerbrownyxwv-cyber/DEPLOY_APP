@@ -24,11 +24,18 @@
       const first=[source01[0],source01[3],source01[2],source01[1],source01[5],source01[4]].map(item=>[...item]);
       first[0][0]='高新技术企业';
       ['2019年12月','2020年9月','2021年8月','2021年8月','2023年1月','2024年7月'].forEach((date,i)=>first[i][2]=date);
-      return `<div class="xf-brand"><section class="xf-hero" data-immersive-hero>${image('imgDji04701','艾草种植影像','fetchpriority="high"')}<div class="xf-hero-copy"><img src="${base}img1.svg" alt="寻艾艾灸馆" width="216" height="78"><h1>与时代共鸣的养生智慧</h1><p>艾灸，这缕穿越千年的东方温热，正以其温和、深入且顺应自然的独特魅力，成为现代人对抗疲劳、恢复能量、重获身心平衡的理想之选。它不再只是一项传统技艺，更是一种与时代共鸣的智慧生活方式，市场前景广阔而深远。</p></div></section>${introduction()}${businesses()}<div class="xf-dark">${timeline(history)}${group()}</div>${products()}${terminal()}${honors([['权威资质',first],...evidence.slice(1)])}</div>`;
+      return `<div class="xf-brand"><section class="xf-hero" data-immersive-hero><video class="xf-hero-video" autoplay muted loop playsinline preload="metadata" poster="${base}imgDji04701.webp" aria-hidden="true"><source src="../../assets/video/brand-hero.mp4" type="video/mp4"></video><div class="xf-hero-copy"><img src="${base}img1.svg" alt="寻艾艾灸馆" width="216" height="78"><h1>与时代共鸣的养生智慧</h1><p>艾灸，这缕穿越千年的东方温热，正以其温和、深入且顺应自然的独特魅力，成为现代人对抗疲劳、恢复能量、重获身心平衡的理想之选。它不再只是一项传统技艺，更是一种与时代共鸣的智慧生活方式，市场前景广阔而深远。</p></div></section>${introduction()}${businesses()}<div class="xf-dark">${timeline(history)}${group()}</div>${products()}${terminal()}${honors([['权威资质',first],...evidence.slice(1)])}</div>`;
     },
     mount(main){
       if(!main.querySelector('.xf-brand'))return;
       const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const heroVideo=main.querySelector('.xf-hero-video');
+      if(heroVideo){
+        const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
+        const syncHeroVideo=()=>{if(motionPreference.matches){heroVideo.pause();return;}heroVideo.play().catch(()=>{});};
+        syncHeroVideo();
+        motionPreference.addEventListener?.('change',syncHeroVideo);
+      }
       const business=main.querySelector('[data-business]'),covers=business.querySelector('.xf-covers'),viewport=business.querySelector('.xf-detail-viewport'),track=business.querySelector('.xf-detail-track');
       let active=-1,closing=null;
       const select=index=>{

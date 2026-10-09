@@ -31,9 +31,9 @@
   #main-content :is(h1,h2,h3,p,a,button,summary){overflow-wrap:anywhere}
   #main-content :is(.xh-section,.xf-section,.xs-section,.xj-wrap,.xo-content,.xa-content){min-width:0}
   .site-header,.site-header.is-solid,body:not(.home-route) .site-header{height:4rem;min-height:4rem;padding: .5rem var(--m-page);align-items:center}
-  .site-header .brand-logo{width:7.5rem;max-width:7.5rem;height:auto}
-  .site-header .brand-word-crop{width:2.875rem;height:2rem}
-  .site-header .brand-word-crop .brand-logo{width:7.5rem}
+  .site-header .brand-logo{width:auto;max-width:5.75rem;height:2rem}
+  .site-header .brand-word-crop{width:auto;height:2rem;overflow:visible}
+  .site-header .brand-word-crop .brand-logo{width:auto;max-width:5.75rem;height:2rem}
   .menu-toggle{width:3rem;height:2.75rem}
   .mobile-drawer{width:100%;padding:1.5rem;gap:1rem;overflow-y:auto;justify-content:flex-start}
   .drawer-head{padding:0;min-height:2.75rem;flex:none}

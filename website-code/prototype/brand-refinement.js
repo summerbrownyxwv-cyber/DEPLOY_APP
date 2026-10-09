@@ -19,17 +19,17 @@ window.XunAiDesign = {
   },
   home() {
     return `<div class="home-shell xh-home">
-      <section class="xh-opening" data-immersive-hero aria-labelledby="home-title">
+      <div class="xh-opening-scroll"><section class="xh-opening" data-immersive-hero aria-labelledby="home-title">
         <img class="xh-opening-image" src="../../assets/figma-stores-v1/imgE4A99442.webp" width="4096" height="2731" fetchpriority="high" alt="寻艾黑金店的山水壁画与接待空间">
         <div class="xh-opening-copy"><p>寻艾艾灸馆</p><h1 id="home-title">与时代共鸣的<br><span>养生智慧</span></h1></div>
         <div class="xh-opening-bottom"><p>以艾草为本，连接人与日常。</p></div>
-      </section>
-      <section class="xh-origin xh-section" aria-labelledby="xh-origin-title"><h2 id="xh-origin-title">「东元集团」旗下终端品牌<br>革新传统艾灸服务</h2><div class="xh-origin-columns"><p>寻艾是以线下艾灸馆为基础业态的终端品牌。依托集团供应链，将蕲春道地艾草与艾艾贴产品带进终端门店，结合自研体质检测 AI 与蕲春非遗灸法，革新传统艾灸服务。</p><p>寻艾将数智化艾灸馆的成熟模式推向加盟市场，以数智化管理系统，贯通选址筹建、运营指导、营销推广、招聘培训与产品供应链，连接门店经营与日常服务。</p></div></section>
+      </section></div>
+      <div class="xh-content"><section class="xh-origin xh-section" aria-labelledby="xh-origin-title"><h2 id="xh-origin-title">「东元集团」旗下终端品牌<br>革新传统艾灸服务</h2><div class="xh-origin-columns"><p>寻艾是以线下艾灸馆为基础业态的终端品牌。依托集团供应链，将蕲春道地艾草与艾艾贴产品带进终端门店，结合自研体质检测 AI 与蕲春非遗灸法，革新传统艾灸服务。</p><p>寻艾将数智化艾灸馆的成熟模式推向加盟市场，以数智化管理系统，贯通选址筹建、运营指导、营销推广、招聘培训与产品供应链，连接门店经营与日常服务。</p></div></section>
       <div class="xh-system xf-brand">${window.XunAiFigmaBrand.businesses()}</div>
       <div class="xh-stores"><section class="xh-sanctuary xh-section" aria-labelledby="xh-stores-title"><div class="xh-sanctuary-heading"><p>从艾草到服务</p><h2 id="xh-stores-title">寻艾艾灸馆</h2></div><figure class="xh-sanctuary-image"><img src="../../assets/figma-stores-v2/comp-imgRectangle5.webp" width="678" height="878" loading="lazy" alt="寻艾门店温润的空间与服务细节"></figure><div class="xh-sanctuary-links"><p>空间承载服务，细节传递关怀。</p><a class="xh-row route-link" href="#/stores/black-gold/detail"><span>黑金店</span><span aria-hidden="true">↗</span></a><a class="xh-row route-link" href="#/stores/standard/detail"><span>标准店</span><span aria-hidden="true">↗</span></a><a class="xh-row route-link" href="#/stores/services"><span>服务卡项</span><span aria-hidden="true">↗</span></a></div></section>${window.XunAiStores.locations()}</div>
       <section class="xh-digital xh-section" aria-labelledby="xh-ai-title"><div class="xh-digital-copy"><p class="xh-label">寻艾 AI</p><h2 id="xh-ai-title">传统智慧，<br>新的连接。</h2><p>以数字化能力，辅助健康信息整理与门店服务。</p><a class="xh-link route-link" href="#/ai">了解寻艾 AI<span aria-hidden="true">↗</span></a></div><div class="xh-ai-visual">${window.XunAiAI.stage()}</div></section>
       <section class="xh-connection xh-section" aria-labelledby="xh-connection-title"><div><p class="xh-label">与寻艾同行</p><h2 id="xh-connection-title">让艾，<br>走进更多日常。</h2></div><div class="xh-connection-links"><a class="xh-row route-link" href="#/franchise"><span>加盟合作</span><span aria-hidden="true">↗</span></a><a class="xh-row route-link" href="#/brand/products"><span>产品体系</span><span aria-hidden="true">↗</span></a><a class="xh-row route-link" href="#/about/culture"><span>关于寻艾</span><span aria-hidden="true">↗</span></a></div></section>
-    </div>`;
+    </div></div>`;
   },
 
   enhance(main, page) {
@@ -41,12 +41,23 @@ window.XunAiDesign = {
       table.before(region);region.append(table);
     });
     if(page==='/'){
-      const hero=main.querySelector('.xh-opening'),picture=hero.querySelector('img'),reduce=matchMedia('(prefers-reduced-motion:reduce)');
+      const hero=main.querySelector('.xh-opening'),scene=hero.parentElement,header=document.querySelector('.site-header'),reduce=matchMedia('(prefers-reduced-motion:reduce)');
       let frame=0;
-      const draw=()=>{frame=0;const rect=hero.getBoundingClientRect();if(reduce.matches){picture.style.transform='';return}if(rect.bottom<=0||rect.top>=innerHeight)return;const progress=Math.max(0,Math.min(1,-rect.top/rect.height));picture.style.transform=`scale(${1.04-progress*.04}) translateY(${progress*3}%)`;};
+      const draw=()=>{
+        frame=0;scene.classList.toggle('has-depth',!reduce.matches);
+        if(reduce.matches){hero.style.removeProperty('--xh-depth-scale');hero.style.removeProperty('--xh-depth-copy-opacity');hero.style.removeProperty('--xh-depth-copy-y');const rect=hero.getBoundingClientRect();header.classList.toggle('is-solid',(Math.min(rect.bottom,innerHeight)-Math.max(rect.top,0))/rect.height<.72);return;}
+        scene.parentElement.style.setProperty('--xh-opening-height',hero.offsetHeight+'px');
+        const rect=scene.getBoundingClientRect(),distance=scene.offsetHeight-hero.offsetHeight;
+        const progress=Math.max(0,Math.min(1,-rect.top/Math.max(1,distance))),phone=innerWidth<768;
+        hero.style.setProperty('--xh-depth-scale',1+progress*(phone ? .24 : .45));
+        hero.style.setProperty('--xh-depth-copy-opacity',1-Math.max(0,Math.min(1,(progress-.15)/.65)));
+        hero.style.setProperty('--xh-depth-copy-y',(-progress*18)+'px');
+        header.classList.toggle('is-solid',scene.nextElementSibling.getBoundingClientRect().top<=header.offsetHeight);
+      };
       const schedule=()=>{if(!frame)frame=requestAnimationFrame(draw)};
       window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);reduce.addEventListener('change',schedule);draw();
-      this.homeMotionCleanup=()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);reduce.removeEventListener('change',schedule)};
+      const size=new ResizeObserver(schedule);size.observe(hero);
+      this.homeMotionCleanup=()=>{cancelAnimationFrame(frame);size.disconnect();window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);reduce.removeEventListener('change',schedule)};
     }
     if (main.querySelector('.xb-page,.xs-page,.xf-brand,.xa-page,.xo-page,.xj-page')) return;
     // Avoid repeated brand marks and self-links masquerading as navigation.

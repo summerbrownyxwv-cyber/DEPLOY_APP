@@ -255,7 +255,6 @@ let initialRender = true;
 let serviceLastFocused = null;
 let formDirty = false;
 let formState = {};
-let curtainTimers = [];
 
 function parseRoute() {
   const raw = location.hash.slice(1) || "/";
@@ -350,7 +349,27 @@ function renderRoute() {
 }
 
 function renderWithTransition() {
-  renderRoute();
+  const { page } = parseRoute();
+  const curtain = document.querySelector('.route-curtain');
+  const needsCurtain = !initialRender && page !== renderedPage && curtain && !reduceMotion.matches;
+  const opacity = curtain && document.body.classList.contains('is-transitioning') ? getComputedStyle(curtain).opacity : 0;
+  curtain?.getAnimations().forEach(animation => { animation.onfinish = null; animation.cancel(); });
+  if (needsCurtain) {
+    document.body.classList.add('is-transitioning');
+    const enter = curtain.animate([{opacity},{opacity:1}],{duration:160,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
+    enter.onfinish = () => {
+      renderRoute();
+      enter.cancel();
+      const exit = curtain.animate([{opacity:1},{opacity:0}],{delay:1120,duration:320,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
+      exit.onfinish = () => {
+        document.body.classList.remove('is-transitioning');
+        exit.cancel();
+      };
+    };
+  } else {
+    document.body.classList.remove('is-transitioning');
+    renderRoute();
+  }
   initialRender = false;
 }
 
@@ -396,6 +415,7 @@ function setupHeaderTone() {
     return;
   }
   heroObserver = new IntersectionObserver(([entry]) => {
+    if (hero.parentElement.classList.contains('has-depth')) return;
     header.classList.toggle("is-solid", !entry.isIntersecting || entry.intersectionRatio < 0.72);
   }, { threshold: [0.72] });
   heroObserver.observe(hero);
@@ -533,6 +553,16 @@ drawer.querySelector(".drawer-close").addEventListener("click", closeDrawer);
 scrim.addEventListener("click", closeDrawer);
 
 document.addEventListener("click", (event) => {
+  const skipLink = event.target.closest(".skip-link");
+  if (skipLink) {
+    event.preventDefault();
+    const target = document.querySelector(skipLink.getAttribute("href"));
+    if (target) {
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+    }
+    return;
+  }
   const routeLink = event.target.closest(".route-link");
   if (routeLink && formDirty && !window.confirm("你填写的原型信息尚未保存，仍要离开吗？")) {
     event.preventDefault();
@@ -568,6 +598,7 @@ window.addEventListener("beforeunload", (event) => {
 });
 
 window.addEventListener("hashchange", renderWithTransition);
+reduceMotion.addEventListener('change', () => { if (reduceMotion.matches) renderWithTransition(); });
 
 // Collapse the shared footer on phones and tablets; restore desktop columns above the breakpoint.
 const footerPhone = matchMedia('(max-width:1199.98px)');
@@ -600,4 +631,4 @@ footerPhone.addEventListener('change',syncPhoneFooter);
 if (footerPhone.matches) syncPhoneFooter();
 
 renderWithTransition();
-window.setTimeout(() => document.body.classList.remove("is-loading"), reduceMotion.matches ? 0 : 760);
+window.setTimeout(() => document.body.classList.remove("is-loading"), reduceMotion.matches ? 0 : 1400);

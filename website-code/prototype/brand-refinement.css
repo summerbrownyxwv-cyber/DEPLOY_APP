@@ -18,7 +18,15 @@ body{font-family:var(--x-font-sans);font-size:var(--x-body-size);line-height:1.7
 h1,h2,h3{font-family:var(--x-font-display);font-weight:400;letter-spacing:0;line-height:1.4;text-wrap:balance}
 p{overflow-wrap:break-word}
 [hidden]{display:none!important}
-.intro-loader,.route-curtain,.hero-promo,.total-section,.brand-orbit,.row-preview{display:none!important}
+.hero-promo,.total-section,.brand-orbit,.row-preview{display:none!important}
+.intro-loader,.route-curtain{place-items:center;align-content:center;padding:0;background:#fff;overflow:hidden;pointer-events:none}
+.intro-loader{transition:opacity 320ms cubic-bezier(.4,0,.2,1),visibility 0s 320ms}
+.route-curtain{transform:none;transition:none}
+body.is-transitioning .route-curtain{transform:none}
+.intro-loader-svg,.route-curtain-svg{display:block;width:clamp(56px,6vw,76px);height:auto;aspect-ratio:206/291;object-fit:contain}
+.intro-loader-svg{animation:xunai-loader-enter 320ms cubic-bezier(.4,0,.2,1) both}
+@keyframes xunai-loader-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.intro-loader,.route-curtain{display:none}}
 .site-header,.site-header.is-solid,body:not(.home-route) .site-header{
   position:sticky;min-height:var(--x-header-height);padding:12px var(--x-page-gutter);
   grid-template-columns:auto 1fr;align-items:center;background:#fff;color:var(--x-text-primary);
@@ -28,6 +36,7 @@ p{overflow-wrap:break-word}
 body.immersive-route .site-header{position:fixed;inset:0 0 auto;z-index:50;background:transparent;color:#fff;border-color:transparent;transition:background-color 220ms,color 220ms,border-color 220ms}
 body.immersive-route .site-header:not(.is-solid) .brand-logo{filter:brightness(0) invert(1)}
 body.immersive-route .site-header.is-solid{background:var(--x-surface-page);color:var(--x-text-primary);border-color:var(--x-border-subtle)}
+body:not(.home-route) .site-header .brand-logo,body.immersive-route .site-header.is-solid .brand-logo{filter:invert(1)}
 main [id]{scroll-margin-top:calc(var(--x-header-height) + 24px)}
 .brand-logo{width:164px;height:auto;display:block;object-fit:contain}
 .deck-link{min-height:44px;font-size:14px;background:transparent!important;color:var(--x-text-primary)!important;border-color:var(--x-border-default)}

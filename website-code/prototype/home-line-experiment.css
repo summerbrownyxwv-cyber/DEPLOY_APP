@@ -22,7 +22,7 @@
 body.line-experiment.home-route .site-header{position:fixed;top:var(--hl-header-y,41.4svh);inset-inline:clamp(12px,2.4vw,92px);min-height:64px;padding:0 clamp(24px,4.6vw,180px);background:transparent;color:#fffaf2;border-top:1px solid #ffffff70;border-bottom:0;backdrop-filter:none;transition:background-color 220ms,color 220ms}
 body.line-experiment.home-route .site-header .brand-logo{filter:brightness(0) invert(1)}
 body.line-experiment.home-route.hl-header-docked .site-header{inset-inline:0;background:#fff;color:#20221f;border-top-color:transparent;border-bottom:1px solid var(--x-border-subtle)}
-body.line-experiment.home-route.hl-header-docked .site-header .brand-logo{filter:none}
+body.line-experiment.home-route.hl-header-docked .site-header .brand-logo{filter:invert(1)}
 .hl-intro{padding:clamp(72px,9vw,180px) var(--hl-gutter);display:grid;grid-template-columns:1fr 1fr;gap:12vw}
 .hl-intro>div{max-width:36em;justify-self:end;align-self:center}.hl-intro>div>p+p{margin-top:20px;color:var(--hl-muted)}
 .hl-link{display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:48px;width:max-content;max-width:100%;border-bottom:1px solid #ffffff65;font-size:clamp(14px,1vw,18px);transition:border-color 180ms}
