@@ -1,12 +1,12 @@
 {
-  "name": "xunai-final-review",
+  "name": "xunai-website",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "dev": "node scripts/serve.mjs",
-    "build": "node scripts/build.mjs",
-    "preview": "node scripts/serve.mjs dist"
+    "dev": "node website-code/scripts/serve.mjs",
+    "build": "node website-code/scripts/build.mjs",
+    "preview": "node website-code/scripts/serve.mjs website-code/dist"
   }
 }
